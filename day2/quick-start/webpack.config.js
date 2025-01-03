@@ -1,12 +1,14 @@
 const path = require('path');
+const webpack = require('webpack');
+const FooterPlugin = require('./plugin/FooterPlugin.js')
 
 module.exports = {
-  /* 模式设置 development 开发模式  production 生产模式 */
+  // 模式设置  development 开发模式  production 生产模式
   mode: 'development',
   devtool: 'source-map',
-  /* 入口文件 */
+  // 入口文件
   entry: './src/index.js',
-  /* 输出配置 */
+  // 输出配置
   output: {
       /* 打包后的文件存放的地方 使用path生成绝对路径 */
       /* 指向 webpack.config.js 当前的路径 */
@@ -14,6 +16,7 @@ module.exports = {
       /* 打包后输出文件的文件名 */
       filename: 'bundle.js'
   },
+  // 模块
   module: {
     // loader 加载器 配置所有的loader
     rules: [
@@ -35,5 +38,14 @@ module.exports = {
         ]
       }
     ]
-  }
+  },
+  // 插件
+  plugins: [
+    new webpack.BannerPlugin({
+      banner: '我学习 webpack 的第二天'
+    }),
+    new FooterPlugin({
+      footer: '我是自定义插件'
+    })
+  ]
 }

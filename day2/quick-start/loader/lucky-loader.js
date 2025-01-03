@@ -3,9 +3,9 @@
 const REG = /<script>([\s\S]+?)<\/script>/
 
 module.exports = function (source) {
-  console.log('源文件信息：', source);
+  // console.log('源文件信息：', source);
   const result = source.match(REG);
-  console.log('通过正则解析的结果：', result);
+  // console.log('通过正则解析的结果：', result);
   return result && result[1] ? result[1] : source
 }
 
