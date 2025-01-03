@@ -1,0 +1,11 @@
+<script>
+    export default {
+        a: 1,
+        data() {
+            return {
+                b: 2
+            }
+        },
+        c: 3,
+    }
+</script>
