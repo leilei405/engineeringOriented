@@ -2,13 +2,14 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   // 开发模式
   mode: 'development',
 
   // 开启source-map
-  devtool: 'source-map',
+  // devtool: 'source-map',
 
   // 入口文件
   // entry: './src/index.js', // 单入口
@@ -28,7 +29,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg)$/i,
@@ -78,6 +79,12 @@ module.exports = {
           to: path.resolve(__dirname, './dist/img')
         }
       ]
+    }),
+
+    // 抽离css
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].css',
+      chunkFilename: 'css/[name].chunk.css'
     })
   ],
 
