@@ -27,7 +27,7 @@ module.exports = {
           // 小于4kb的图片转base64位
           // 优点：减少请求数量  缺点：图片体积会更大
           dataUrlCondition: {
-            maxSize: 4 * 1024
+            maxSize: 8 * 1024
           }
         },
         generator: {
@@ -40,9 +40,16 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      filename: 'index.html', // 模版名称
-      template: path.resolve(__dirname, './src/index.html') // 模版路径
+        filename: 'index.html', // 模版名称
+        template: path.resolve(__dirname, './src/index.html')   // 模版路径
     }),
+
+    new HtmlWebpackPlugin({
+      filename: 'login.html', // 模版名称
+      template: path.resolve(__dirname, './src/login.html')   // 模版路径
+    }),
+
+    // 提供全局的jquery （映射）
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery'
