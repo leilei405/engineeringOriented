@@ -1,1 +1,2 @@
-console.log('webpack')
+import './css/public.css';
+import './css/index.css';
