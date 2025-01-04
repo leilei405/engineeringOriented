@@ -8,7 +8,7 @@ const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = {
   // 开发模式
-  mode: 'production',
+  mode: 'development',
 
   // 开启source-map
   // devtool: 'source-map',
@@ -67,7 +67,23 @@ module.exports = {
     ],
     // 代码分割配置
     splitChunks: {
-      chunks: 'all'
+      minSize: 500 * 1024, // 分割代码最小的体积,
+      chunks: 'all',
+      name: 'common', // 分割代码的名称
+      cacheGroups: {
+        // 第三方模块
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          name: 'vendor'
+        },
+        // 公共模块
+        common: {
+          minChunks: 2,
+          priority: -20,
+          name: 'common'
+        }
+      }
     }
   },
 
