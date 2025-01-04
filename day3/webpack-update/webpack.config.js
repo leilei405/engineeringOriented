@@ -7,7 +7,8 @@ module.exports = {
   devtool: 'source-map',
   // entry: './src/index.js',
   entry: {
-    bundle: './src/index.js'
+    index: './src/index.js',
+    login: './src/login.js'
   },
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -41,12 +42,14 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
         filename: 'index.html', // 模版名称
-        template: path.resolve(__dirname, './src/index.html')   // 模版路径
+        template: path.resolve(__dirname, './src/index.html'),   // 模版路径
+        chunks: ['index'] // 引入的js文件
     }),
 
     new HtmlWebpackPlugin({
       filename: 'login.html', // 模版名称
-      template: path.resolve(__dirname, './src/login.html')   // 模版路径
+      template: path.resolve(__dirname, './src/login.html'),   // 模版路径
+      chunks: ['login'] // 引入的js文件
     }),
 
     // 提供全局的jquery （映射）
