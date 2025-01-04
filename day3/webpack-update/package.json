@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --open",
-    "build": "webpack"
+    "dev": "webpack-dev-server --open --config build/webpack.config.js",
+    "build": "webpack --config build/webpack.config.js"
   },
   "keywords": [],
   "author": "",
