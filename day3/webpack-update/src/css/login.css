@@ -1,23 +1,26 @@
-
 html,body{
 	width:100%;
 	height:100%;
 }
+
 .reg{
 	width:100%;
 	height:100%;
 	background: url(../img/temp/20.jpg) no-repeat;
 	background-size: 100% 100%;
 }
+
 .login{
 	width:100%;
 	height:100%;
 	background: url(../img/temp/19.jpg) no-repeat;
 	background-size: 100% 100%;
 }
+
 .login img,.reg img{
 	width:auto;
 }
+
 .login form,.reg form{
 	position: fixed;
 	top:15%;
@@ -27,6 +30,7 @@ html,body{
 	z-index: 10;
 	background: #fff;
 }
+
 .msg-warn{
     position: relative;
     background: #fef4e5;

@@ -80,6 +80,10 @@ const config = {
         to: path.resolve(__dirname, '../dist/img')
       }]
     }),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
+    }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].css',
       chunkFilename: 'css/[name].chunk.css'

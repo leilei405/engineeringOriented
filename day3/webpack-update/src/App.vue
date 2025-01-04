@@ -1,19 +1,9 @@
 <script>
-export default {
-  name: 'App',
-  data() {
-    return {
-      message: 'Hello Vue!'
-    }
-  }
-}
-
+export default {}
 </script>
 
 <template>
-<div>{{ message }}</div>
+<div>
+  <router-view />
+</div>
 </template>
-
-<style scoped>
-
-</style>
