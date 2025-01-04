@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -41,6 +42,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html', // 模版名称
       template: path.resolve(__dirname, './src/index.html') // 模版路径
+    }),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
     })
   ]
 }
