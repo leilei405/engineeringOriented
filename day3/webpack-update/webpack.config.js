@@ -48,6 +48,17 @@ module.exports = {
           // [hash:8] hash值取8位  [ext] 文件扩展名
           filename: 'images/[name].[hash:4][ext]'
         }
+      },
+      {
+        test: /\.ejs/,
+        use: [
+          {
+            loader: 'ejs-loader',
+            options: {
+              esModule: false, // 关闭esModule选项
+            },
+          },
+        ],
       }
     ]
   },
