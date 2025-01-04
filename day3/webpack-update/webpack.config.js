@@ -3,10 +3,12 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
+const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = {
   // 开发模式
-  mode: 'development',
+  mode: 'production',
 
   // 开启source-map
   // devtool: 'source-map',
@@ -50,6 +52,26 @@ module.exports = {
     ]
   },
 
+  optimization: {
+    // 开发环境下代码压缩
+    minimize: true,
+    // 配置压缩的插件
+    minimizer: [
+      // webpack4 支持的压缩插件
+      // new webpack.UgUglifyJsPlugin({
+      //   sourceMap: true,
+      // })
+      new TerserWebpackPlugin(),
+      // css压缩插件
+      new CssMinimizerWebpackPlugin()
+    ],
+    // 代码分割配置
+    splitChunks: {
+      chunks: 'all'
+    }
+  },
+
+  // 插件
   plugins: [
     // 模版配置1
     new HtmlWebpackPlugin({
@@ -88,6 +110,7 @@ module.exports = {
     })
   ],
 
+  // 开发服务器配置
   devServer: {
     static: {
       directory: path.join(__dirname, 'dist'), // 构建后的结果放在内存中
