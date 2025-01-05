@@ -7,7 +7,7 @@ module.exports = {
   mode: 'development',
   devtool: 'source-map',
   // 入口文件
-  entry: './src/index.js',
+  entry: './src/home.js',
   // 输出配置
   output: {
       /* 打包后的文件存放的地方 使用path生成绝对路径 */

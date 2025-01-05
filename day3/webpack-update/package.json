@@ -5,8 +5,12 @@
   "scripts": {
     "dev": "webpack-dev-server --open --config build/webpack.config.js",
     "build": "webpack --config build/webpack.config.js",
+
     "dev:vue": "webpack-dev-server --config build/webpack.vue.config.js",
-    "build:vue": "webpack --config build/webpack.vue.config.js"
+    "build:vue": "webpack --config build/webpack.vue.config.js",
+
+    "dev:mpavue": "webpack-dev-server --config build/webpack.vue.mpa.config.js",
+    "build:mpavue": "webpack --config build/webpack.vue.mpa.config.js"
   },
   "keywords": [],
   "author": "",
