@@ -1,9 +1,12 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import Vue from 'vue'
+import Router from 'vue-router'
 import Home from '../Home/index.vue'
 import Login from '../Login/index.vue'
 
-const router = createRouter({
-  history: createWebHashHistory(),
+Vue.use(Router)
+
+// 导出路由配置
+export default new Router({
   routes: [
     {
       path: '/',
@@ -21,5 +24,3 @@ const router = createRouter({
     }
   ]
 })
-
-export default router;

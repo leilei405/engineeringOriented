@@ -4,25 +4,33 @@ import '../css/index.css';
 import 'jquery';
 import '../js/nav';
 
+
+import { useRouter } from 'vue-router'
 export default {
-  methods: {
-    goLogin() {
-      this.$router.push('/login')
+  // Vue 3 写法
+  setup () {
+    const router = useRouter();
+    const goLogin = () => {
+      router.push('/login')
+    }
+
+    return {
+      goLogin
     }
   }
 }
 </script>
 
 <template>
-  <div>
+  <div style="width: 100%; height: 100%;">
     <div class="head">
       <div class="wrapper clearfix">
         <div class="clearfix" id="top">
           <h1 class="fl"><a href="index.html"><img src="../img/logo.png"/></a></h1>
           <div class="fr clearfix" id="top1">
             <p class="fl">
-<!--              <a href="#" id="login" @click="goLogin">登录</a>-->
-              <a href="../login.html" id="login">登录</a>
+              <a id="login" @click="goLogin">登录</a>
+<!--              <a href="../login.html" id="login">登录</a>-->
               <a href="#" id="reg">注册</a>
             </p>
             <form action="#" method="get" class="fl">
