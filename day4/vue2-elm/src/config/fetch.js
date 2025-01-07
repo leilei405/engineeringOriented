@@ -35,9 +35,9 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
 				value: JSON.stringify(data)
 			})
 		}
-		
+
 		try {
-			const response = await fetch(url, requestConfig);
+			const response = await fetch('http://cangdu.org:8001' + url, requestConfig);
 			const responseJson = await response.json();
 			return responseJson
 		} catch (error) {

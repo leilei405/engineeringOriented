@@ -60,22 +60,22 @@ export default {
 	        this.guessCity = res.name;
 	        this.guessCityid = res.id;
 	    })
-	
+
 	    //获取热门城市
 	    hotcity().then(res => {
 	        this.hotcity = res;
 	    })
-	
+
 	    //获取所有城市
 	    groupcity().then(res => {
 	        this.groupcity = res;
 	    })
 	},
-	
+
 	components:{
 	    headTop
 	},
-	
+
 	computed:{
 	    //将获取的数据按照A-Z字母开头排序
 	    sortgroupcity(){
@@ -88,7 +88,7 @@ export default {
 	        return sortobj
 	    }
 	},
-	
+
 	methods:{
 	    //点击图标刷新页面
 	    reload(){
@@ -148,7 +148,7 @@ export default {
         margin-bottom: 0.4rem;
     }
     .citylistul{
-        li{
+        a{
             float: left;
             text-align: center;
             color: $blue;
@@ -157,7 +157,7 @@ export default {
             @include wh(25%, 1.75rem);
             @include font(0.6rem, 1.75rem);
         }
-        li:nth-of-type(4n){
+        a:nth-of-type(4n){
             border-right: none;
         }
     }
@@ -175,7 +175,7 @@ export default {
         top: 1.95rem;
         background-color: #fff;
     }
-    
+
     .letter_classify_li{
         margin-bottom: 0.4rem;
         background-color: #fff;
