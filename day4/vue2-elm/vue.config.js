@@ -1,15 +1,16 @@
 const path = require('path');
+const webpack = require('webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
-
+const isDisabled = process.env.MEASURE === 'true';
 
 const smp = new SpeedMeasurePlugin({
-  disable: !(process.env.MEASURE === 'true'), // 是否禁用插件
+  disable: !isDisabled, // 是否禁用插件
   outputFormat: 'humanVerbose', // 输出格式 比较详细的输出
 });
 
 module.exports = {
-  parallel: false,
+  parallel: true,
   configureWebpack: smp.wrap({
     resolve: {
       alias: {
@@ -38,11 +39,11 @@ module.exports = {
     },
     plugins: [
       new BundleAnalyzerPlugin({
-        // analyzerMode: 'disabled', // 不启动展示打包报告的http服务器
-        // analyzerMode: 'server', // 默认展示打开打包报告的http服务器
-        // analyzerMode: 'static', // 生成打包报告文件 html
-        // generateStatsFile: true, // 是否生成stats.json  文件
+       analyzerMode: isDisabled ? 'server' : 'disabled',
       }),
+      new webpack.DllReferencePlugin({
+        manifest: path.resolve(__dirname, './dll/vue-manifest.json')
+      })
     ],
   })
 }
