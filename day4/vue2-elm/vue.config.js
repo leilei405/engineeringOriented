@@ -1,6 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
+const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin');
 const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
 const isDisabled = process.env.MEASURE === 'true';
 
@@ -10,6 +12,7 @@ const smp = new SpeedMeasurePlugin({
 });
 
 module.exports = {
+  publicPath: '/',
   parallel: true,
   configureWebpack: smp.wrap({
     resolve: {
@@ -43,7 +46,18 @@ module.exports = {
       }),
       new webpack.DllReferencePlugin({
         manifest: path.resolve(__dirname, './dll/vue-manifest.json')
-      })
+      }),
+      // new CopyWebpackPlugin({
+      //   patterns: [
+      //     {
+      //       from: path.resolve(__dirname, './dll/vue.dll.js'),
+      //       to: path.resolve(__dirname, './dist/js/vue.dll.js'),
+      //     }
+      //   ]
+      // }),
+      new AddAssetHtmlWebpackPlugin({
+        filepath: path.resolve(__dirname, './dll/vue.dll.js'),
+      }),
     ],
   })
 }
