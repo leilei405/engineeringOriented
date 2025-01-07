@@ -3,7 +3,7 @@
         <head-top head-title="食品监督安全公示" go-back='true'></head-top>
         <section id="scroll_section" class="scroll_container">
             <section>
-                
+
                 <section class="shop_status_container">
                     <header>食品监督安全公示</header>
                     <section class="shop_statu_detail">
@@ -91,8 +91,8 @@
                 <section class="license_img shop_status_container">
                     <header>许可证书</header>
                     <div class="img_container">
-                        <img :src="localapi || proapi ? imgBaseUrl + shopDetail.license.business_license_image : getImgPath(shopDetail.license.business_license_image)">
-                        <img :src="localapi || proapi ? imgBaseUrl + shopDetail.license.catering_service_license_image : getImgPath(shopDetail.license.catering_service_license_image)">
+                        <img :src="'1' ? imgBaseUrl + shopDetail.license.business_license_image : getImgPath(shopDetail.license.business_license_image)">
+                        <img :src="'2' ? imgBaseUrl + shopDetail.license.catering_service_license_image : getImgPath(shopDetail.license.catering_service_license_image)">
                     </div>
                 </section>
             </section>
@@ -105,25 +105,23 @@
     import headTop from 'src/components/header/head'
     import {getImgPath} from 'src/components/common/mixin'
     import BScroll from 'better-scroll'
-    import { localapi, proapi, imgBaseUrl} from 'src/config/env'
+    import { imgBaseUrl } from 'src/config/env'
 
 
     export default {
     	data(){
             return{
-                localapi,
-                proapi,
                 imgBaseUrl
             }
         },
         mounted(){
         	this.$nextTick(() => {
-                new BScroll('#scroll_section', {  
+                new BScroll('#scroll_section', {
                     deceleration: 0.001,
                     bounce: true,
                     swipeTime: 1800,
                     click: true,
-                }); 
+                });
             })
         },
         computed: {
@@ -143,10 +141,10 @@
         }
     }
 </script>
-	
+
 <style lang="scss" scoped>
     @import 'src/style/mixin';
-	
+
 	.safe_shop{
 		position: fixed;
 		top: 0;
@@ -219,5 +217,5 @@
             }
         }
     }
-    
+
 </style>

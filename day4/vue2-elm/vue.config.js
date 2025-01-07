@@ -9,6 +9,7 @@ const smp = new SpeedMeasurePlugin({
 });
 
 module.exports = {
+  parallel: false,
   configureWebpack: smp.wrap({
     resolve: {
       alias: {
@@ -16,6 +17,24 @@ module.exports = {
         'assets': path.resolve(__dirname, './src/assets'),
         'components': path.resolve(__dirname, './src/components'),
       }
+    },
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          include: path.resolve(__dirname, './src'),
+          use: [
+            {
+              loader: 'thread-loader',
+              options: {
+                workers: 3, // 开启3个进程
+                workerParallelJobs: 50, // 每个进程并行执行的工作数量
+              }
+            }
+          ]
+        }
+      ]
     },
     plugins: [
       new BundleAnalyzerPlugin({
