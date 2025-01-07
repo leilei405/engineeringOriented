@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 // const CopyWebpackPlugin = require('copy-webpack-plugin');
+const PurgeCSSPlugin = require('purgecss-webpack-plugin').PurgeCSSPlugin;
 const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin');
 const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
 const isDisabled = process.env.MEASURE === 'true';
@@ -10,6 +11,10 @@ const smp = new SpeedMeasurePlugin({
   disable: !isDisabled, // 是否禁用插件
   outputFormat: 'humanVerbose', // 输出格式 比较详细的输出
 });
+
+const PATHS = {
+  src: path.join(__dirname, "src"),
+};
 
 module.exports = {
   publicPath: './',
@@ -89,6 +94,10 @@ module.exports = {
       new AddAssetHtmlWebpackPlugin({
         filepath: path.resolve(__dirname, './dll/vue.dll.js'),
       }),
+      new PurgeCSSPlugin({
+        paths: require('glob').sync(`${PATHS.src}/**/*}`, { nodir: true }),
+
+      })
     ],
   })
 }
