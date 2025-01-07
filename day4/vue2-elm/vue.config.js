@@ -12,9 +12,13 @@ const smp = new SpeedMeasurePlugin({
 });
 
 module.exports = {
-  publicPath: '/',
+  publicPath: './',
   parallel: true,
   configureWebpack: smp.wrap({
+    cache: {
+      type: 'filesystem', // 使用文件系统进行缓存
+      cacheDirectory: path.resolve(__dirname, './node_modules/.cache_temp'), // 缓存目录
+    },
     resolve: {
       alias: {
         'src': path.resolve(__dirname, './src'),
