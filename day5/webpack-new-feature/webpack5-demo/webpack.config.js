@@ -34,5 +34,13 @@ module.exports = {
         }
       }
     ]
+  },
+  experiments: {
+    buildHttp: {
+      allowedUris: [], // 允许访问的域名
+      allowedPaths: [], // 允许访问的路径
+      allowedSchemes: ['https'],// 允许访问的协议
+      frozen: false, // 冻结
+    }
   }
 }

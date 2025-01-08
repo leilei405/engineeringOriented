@@ -1,3 +1,6 @@
+import data from 'data:text/javascript, export default "hello world"';
+
+console.log(data, '====')
 console.log('hello webpack4');
 
 const icon = require('./assets/img.png');

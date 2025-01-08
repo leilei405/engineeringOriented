@@ -1,3 +1,6 @@
+import data from 'data:text/javascript, export default "hello world"';
+
+console.log(data, '====')
 import { createApp } from 'vue'
 console.log('hello webpack5')
 
