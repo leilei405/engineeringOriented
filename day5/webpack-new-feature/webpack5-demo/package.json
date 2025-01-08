@@ -2,6 +2,7 @@
   "name": "webpack5-demo",
   "version": "1.0.0",
   "main": "index.js",
+  "sideEffects": true,
   "scripts": {
     "build": "webpack"
   },
