@@ -6,5 +6,17 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js'
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      minSize: 1024,
+      name: 'common',
+    },
+  },
+  cache: {      
+    // type: 'memory',
+    type: 'filesystem',
+    cacheDirectory: path.join(__dirname, 'node_modules', '.temp_cache'),
   }
 }
