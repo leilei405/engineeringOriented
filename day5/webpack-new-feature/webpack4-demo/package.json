@@ -10,6 +10,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "hard-source-webpack-plugin": "^0.13.1",
     "webpack": "^4.46.0",
     "webpack-cli": "^4.9.2"
   },

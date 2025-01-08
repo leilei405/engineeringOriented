@@ -1,4 +1,5 @@
 const path = require("node:path");
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 module.exports = {
   mode: 'production', // production  development
@@ -14,5 +15,8 @@ module.exports = {
       name: 'common',
     },
   },
-  cache: true
+  cache: true,
+  plugins: [
+    new HardSourceWebpackPlugin(),
+  ]
 }
