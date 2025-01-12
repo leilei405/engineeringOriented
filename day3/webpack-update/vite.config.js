@@ -2,6 +2,7 @@
 import legacyPlugin from '@vitejs/plugin-legacy';
 import vuePlugin from '@vitejs/plugin-vue';
 import injectPlugin from "@rollup/plugin-inject";
+import { createHtmlPlugin } from 'vite-plugin-html';
 
 export default ({
   command,
@@ -39,7 +40,7 @@ export default ({
       minify: 'terser', // 是否进行压缩,boolean | 'terser' | 'esbuild',默认使用terser
       manifest: false, // 是否产出maifest.json
       sourcemap: false, // 是否产出soucemap.json
-      outDir: 'build', // 产出目录
+      outDir: 'dist', // 产出目录
       rollupOptions,
     },
     esbuild,
@@ -52,7 +53,12 @@ export default ({
         $: "jquery",
         jQuery: "jquery",
         "windows.jQuery": "jquery"
-      })
+      }),
+      createHtmlPlugin({
+        entry: '/src/index.js',
+        template: 'index.html',
+        filename: 'index.html',
+      }),
     ],
     css: {
       preprocessorOptions: {

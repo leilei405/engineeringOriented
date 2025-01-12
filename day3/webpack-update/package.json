@@ -38,6 +38,7 @@
 		"style-loader": "^4.0.0",
 		"terser-webpack-plugin": "^5.3.11",
 		"vite": "6.0.0",
+		"vite-plugin-html": "^3.2.2",
 		"vue-loader": "^16.0.0",
 		"webpack": "^5.97.1",
 		"webpack-cli": "^6.0.1",
