@@ -1,0 +1,17 @@
+{
+  "name": "test-debug-src",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "build:test": "webpack --config webpack.test.config.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1"
+  }
+}
