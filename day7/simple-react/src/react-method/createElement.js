@@ -36,9 +36,12 @@ function createElement(type, config, children) {
 
   // 返回虚拟dom
   return {
+    // 代表着这是React元素，也就是React框架中的虚拟DOM
     $$typeof: REACT_ELEMENT,
+    // 虚拟DOM的元素类型，比如div、span、p等等
     type,
     key,
+    ref,
     props,
   };
 }
