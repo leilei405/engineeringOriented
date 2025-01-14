@@ -19,4 +19,4 @@ import ReactDOM from './react-method/render-react-dom';
 console.log(<div>React <p>11</p><p>22</p><p>33</p></div>)
 
 // 自己实现 render
-ReactDOM.render(<div>React Render</div>, document.getElementById('root'));
+ReactDOM.render(<div style={{ color: 'red', fontSize: '22px' }}>React Render</div>, document.getElementById('root'));

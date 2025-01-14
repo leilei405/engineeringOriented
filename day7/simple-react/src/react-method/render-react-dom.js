@@ -11,15 +11,18 @@ function render(VNode, containerDOM) {
     mount(VNode, containerDOM);
 }
 
-// 挂载
+/**
+ * 挂载虚拟 DOM
+ * @param VNode
+ * @param containerDOM
+ */
 function mount(VNode, containerDOM) {
   let newDOM = createDOM(VNode);
   newDOM && containerDOM.appendChild(newDOM);
 }
 
-// 挂载数组
 /**
- *
+ * 挂载子节点
  * @param children 子节点
  * @param containerDOM 父节点
  */
@@ -34,7 +37,34 @@ function mountArray (children, containerDOM) {
   }
 }
 
-// 创建 DOM
+
+/**
+ * 设置属性值
+ * @param dom 真实 DOM
+ * @param VNodeProps 属性
+ */
+function setPropsForDOM (dom, VNodeProps) {
+  if (!dom) return;
+  console.log('✅ VNode', VNodeProps)
+  console.log('✅ DOM', dom)
+  for (let key in VNodeProps) {
+    if (key === 'children') continue;
+    // 处理样式
+    if (key === 'style') {
+      let styleObj = VNodeProps[key];
+      Object.keys(styleObj).forEach((item) => {
+        console.log(dom, '🌰 🚀🚀🚀', item)
+        dom.style[item] = VNodeProps[key][item];
+      })
+    } else if (/^on[A-Z].*/.test(key)) {
+      // TODO:
+    } else {
+      dom[key] = VNodeProps[key];
+    }
+  }
+}
+
+// 创建虚拟 DOM
 function createDOM (VNode) {
   // 1. 创建元素
   // 2. 处理子元素
@@ -53,6 +83,7 @@ function createDOM (VNode) {
       dom.appendChild(document.createTextNode(props.children));
     }
   }
+  setPropsForDOM(dom, props);
   return dom;
 }
 
