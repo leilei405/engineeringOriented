@@ -6,6 +6,7 @@ import {REACT_ELEMENT} from "../constant";
  * @param containerDOM 真实 DOM 容器
  */
 function render(VNode, containerDOM) {
+    debugger;
     // 将虚拟 DOM 渲染成真实 DOM
     // 将得到的真实 containerDOM 插入到容器中
     mount(VNode, containerDOM);
@@ -37,7 +38,6 @@ function mountArray (children, containerDOM) {
   }
 }
 
-
 /**
  * 设置属性值
  * @param dom 真实 DOM
@@ -45,15 +45,12 @@ function mountArray (children, containerDOM) {
  */
 function setPropsForDOM (dom, VNodeProps) {
   if (!dom) return;
-  console.log('✅ VNode', VNodeProps)
-  console.log('✅ DOM', dom)
   for (let key in VNodeProps) {
     if (key === 'children') continue;
     // 处理样式
     if (key === 'style') {
       let styleObj = VNodeProps[key];
       Object.keys(styleObj).forEach((item) => {
-        console.log(dom, '🌰 🚀🚀🚀', item)
         dom.style[item] = VNodeProps[key][item];
       })
     } else if (/^on[A-Z].*/.test(key)) {
@@ -71,9 +68,14 @@ function createDOM (VNode) {
   // 3. 根据虚拟 DOM 的类型创建真实 DOM
   const { type, props } = VNode;
   let dom;
+  if (typeof type === 'function' && VNode.$$typeof === REACT_ELEMENT) {
+    return getDOMFromFunctionComponent(VNode);
+  }
+
   if (type && VNode.$$typeof === REACT_ELEMENT) {
     dom = document.createElement(type);
   }
+
   if (props) {
     if (typeof props.children === 'object' && props.children.type) {
       mount(props.children, dom);
@@ -83,13 +85,24 @@ function createDOM (VNode) {
       dom.appendChild(document.createTextNode(props.children));
     }
   }
+
   setPropsForDOM(dom, props);
+
   return dom;
 }
 
+// 获取函数组件的 DOM 判断传入的是不是一个函数组件
+function getDOMFromFunctionComponent (VNode) {
+  const { type, props } = VNode;
+  let dom;
+  const renderVNode = type(props);
+  if (!renderVNode) return null;
+  return createDOM(renderVNode);
+}
 
 // 导出 render
 const ReactDOM = {
     render,
 };
+
 export default ReactDOM;

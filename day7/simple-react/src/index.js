@@ -16,7 +16,17 @@ import React from './react-method/createElement';
 import ReactDOM from './react-method/render-react-dom';
 
 // 自己实现 createElement
-console.log(<div>React <p>11</p><p>22</p><p>33</p></div>)
+// console.log(<div>React <p>11</p><p>22</p><p>33</p></div>)
+
+// 实现函数组件渲染 - 自定义函数组件
+function MyFunctionComponent () {
+  return <div>
+    React Function Component
+    <p>p1</p>
+    <p>p2</p>
+    <p>p3</p>
+  </div>
+}
 
 // 自己实现 render
-ReactDOM.render(<div style={{ color: 'red', fontSize: '22px' }}>React Render</div>, document.getElementById('root'));
+ReactDOM.render(<MyFunctionComponent />, document.getElementById('root'));
