@@ -6,7 +6,6 @@ import {REACT_ELEMENT} from "../constant";
  * @param containerDOM 真实 DOM 容器
  */
 function render(VNode, containerDOM) {
-    debugger;
     // 将虚拟 DOM 渲染成真实 DOM
     // 将得到的真实 containerDOM 插入到容器中
     mount(VNode, containerDOM);
@@ -68,6 +67,12 @@ function createDOM (VNode) {
   // 3. 根据虚拟 DOM 的类型创建真实 DOM
   const { type, props } = VNode;
   let dom;
+  // 处理类组件逻辑
+  if (typeof type === 'function' && type.IS_CLASS_COMPONENT && VNode.$$typeof === REACT_ELEMENT) {
+    return getDOMFromClassComponent(VNode);
+  }
+
+  // 处理函数组件逻辑
   if (typeof type === 'function' && VNode.$$typeof === REACT_ELEMENT) {
     return getDOMFromFunctionComponent(VNode);
   }
@@ -94,8 +99,16 @@ function createDOM (VNode) {
 // 获取函数组件的 DOM 判断传入的是不是一个函数组件
 function getDOMFromFunctionComponent (VNode) {
   const { type, props } = VNode;
-  let dom;
   const renderVNode = type(props);
+  if (!renderVNode) return null;
+  return createDOM(renderVNode);
+}
+
+// 获取类组件的 DOM 判断传入的是不是一个类组件
+function getDOMFromClassComponent (VNode) {
+  const { type, props } = VNode;
+  const classComponent = new type(props);
+  const renderVNode = classComponent.render();
   if (!renderVNode) return null;
   return createDOM(renderVNode);
 }
