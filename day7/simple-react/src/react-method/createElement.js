@@ -1,4 +1,5 @@
 import { REACT_ELEMENT } from '../constant';
+import { Component } from './Component'
 /**
  * 1. 处理key
  * 2. 处理props
@@ -48,5 +49,6 @@ function createElement(type, config, children) {
 
 const React = {
   createElement,
+  Component,
 }
 export default React;

@@ -28,5 +28,17 @@ function MyFunctionComponent () {
   </div>
 }
 
+// 实现类组件渲染 - 自定义类组件
+class MyClassComponent extends React.Component {
+  render () {
+    return <div>
+      React Class Component
+      <p>{ this.props.name }</p>
+      <p>p2</p>
+      <p>p3</p>
+    </div>
+  }
+}
+
 // 自己实现 render
-ReactDOM.render(<MyFunctionComponent />, document.getElementById('root'));
+ReactDOM.render(<MyClassComponent name={'Lucky'} />, document.getElementById('root'));
