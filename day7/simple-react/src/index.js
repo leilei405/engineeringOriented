@@ -34,7 +34,14 @@ class MyClassComponent extends React.Component {
     super(props);
     this.state = {
       name: 'Lucky1111',
+      count : '1'
     }
+  }
+
+  updateText() {
+    this.setState({
+      count: this.state.count + 1
+    })
   }
 
   render () {
@@ -42,7 +49,8 @@ class MyClassComponent extends React.Component {
       React Class Component
       <p>{ this.state.name }</p>
       <p>p2</p>
-      <p>p3</p>
+      <p onClick={() => this.updateText()}>点击触发事件</p>
+      <p>{ this.state.count }dddd</p>
       <MyFunctionComponent />
     </div>
   }

@@ -1,4 +1,5 @@
 import {REACT_ELEMENT} from "../constant";
+import {addEvent} from "./event";
 
 /**
  * 渲染 React 元素
@@ -53,7 +54,7 @@ function setPropsForDOM (dom, VNodeProps) {
         dom.style[item] = VNodeProps[key][item];
       })
     } else if (/^on[A-Z].*/.test(key)) {
-      // TODO:
+      addEvent(dom, key.toLowerCase(), VNodeProps[key])
     } else {
       dom[key] = VNodeProps[key];
     }
@@ -112,9 +113,9 @@ function getDOMFromClassComponent (VNode) {
   const renderVNode = classComponent.render();
   classComponent.oldVNode = renderVNode;
   // TODO: 需要删除的代码 start
-  setTimeout(() => {
-    classComponent.setState({name: 'Lucky'})
-  }, 3000)
+  // setTimeout(() => {
+  //   classComponent.setState({name: 'Lucky'})
+  // }, 3000)
   // TODO: 需要删除的代码 end
   if (!renderVNode) return null;
   return createDOM(renderVNode);
