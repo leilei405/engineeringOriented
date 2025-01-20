@@ -92,7 +92,8 @@ function createDOM (VNode) {
   }
 
   setPropsForDOM(dom, props);
-
+  // 将虚拟 DOM 保存到真实 DOM 上
+  VNode.dom = dom;
   return dom;
 }
 
@@ -109,8 +110,26 @@ function getDOMFromClassComponent (VNode) {
   const { type, props } = VNode;
   const classComponent = new type(props);
   const renderVNode = classComponent.render();
+  classComponent.oldVNode = renderVNode;
+  // TODO: 需要删除的代码 start
+  setTimeout(() => {
+    classComponent.setState({name: 'Lucky'})
+  }, 3000)
+  // TODO: 需要删除的代码 end
   if (!renderVNode) return null;
   return createDOM(renderVNode);
+}
+
+export function findDomByVNode (VNode) {
+  if (!VNode) return;
+  if (VNode.dom) return VNode.dom;
+}
+
+export function updateDomTree (oldDOM, newVNode) {
+  // if (!oldDOM || !newVNode) return;
+  let parentNode = oldDOM.parentNode;
+  parentNode.removeChild(oldDOM);
+  parentNode.appendChild(createDOM(newVNode));
 }
 
 // 导出 render

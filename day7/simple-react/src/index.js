@@ -30,15 +30,23 @@ function MyFunctionComponent () {
 
 // 实现类组件渲染 - 自定义类组件
 class MyClassComponent extends React.Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      name: 'Lucky1111',
+    }
+  }
+
   render () {
     return <div>
       React Class Component
-      <p>{ this.props.name }</p>
+      <p>{ this.state.name }</p>
       <p>p2</p>
       <p>p3</p>
+      <MyFunctionComponent />
     </div>
   }
 }
 
 // 自己实现 render
-ReactDOM.render(<MyClassComponent name={'Lucky'} />, document.getElementById('root'));
+ReactDOM.render(<MyClassComponent />, document.getElementById('root'));

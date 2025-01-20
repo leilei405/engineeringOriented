@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            /* 清除所有元素自带内外边距 */
+            padding: 0;
+            margin: 0;
+            /* 去掉下划线 */
+            text-decoration: none;
+            /* 去掉列表符 */
+            list-style: none;
+        }
+
+        /* 最外层div 图片大小 */
+        .lunbo {
+            position: relative;
+            width: 721px;
+            height: 455px;
+            background-color: aqua;
+            overflow: hidden;
+            margin: 100px auto;
+        }
+
+        /* 左右切换按钮 */
+        .rightbtn,
+        .leftbtn {
+            display: none;
+            position: absolute;
+            top: 50%;
+            margin-top: -35px;
+            z-index: 999;
+            /*提升层级*/
+            width: 35px;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            color: #fff;
+            font-size: 35px;
+            background-color: rgba(0, 0, 0, .3);
+        }
+
+        .rightbtn {
+            right: 0;
+        }
+
+        /* 因为动画移动的是 ul所以要给绝对定位 */
+        .lunbo ul {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 600%;
+        }
+
+        /* 每隔li在一行显示  浮动*/
+        .lunbo ul li {
+            float: left;
+        }
+
+        /* 限制图片大小和最外层div一样 */
+        img {
+            width: 721px;
+            height: 455px;
+            vertical-align: middle;
+        }
+
+        /* 小圆圈盒子的位置 */
+        .circle {
+            position: absolute;
+            bottom: 30px;
+            left: 45%;
+        }
+
+        /* 小圆圈浮动 一行显示*/
+        .circle li {
+            float: left;
+            width: 8px;
+            height: 8px;
+            border: 2px solid rgba(255, 255, 255, .5);
+            margin: 0 8px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* 默认样式 */
+        .current {
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- 最外层div -->
+    <div class="lunbo">
+        <!-- 左侧按钮  右侧按钮 -->
+        <a href="javascript:;" class="leftbtn">&lt;</a>
+        <a href="javascript:;" class="rightbtn">&gt;</a>
+        <!-- 图片 -->
+        <ul>
+            <li><a href="#"><img src="https://lowcodedemo.top/images/LuckyC/lucky_1731780184020.png" alt=""></a></li>
+            <li><a href="#"><img src="https://lowcodedemo.top/images/LuckyC/lucky_1731780184020.png" alt=""></a></li>
+            <li><a href="#"><img src="https://lowcodedemo.top/images/LuckyC/lucky_1731780184020.png" alt=""></a></li>
+            <li><a href="#"><img src="https://lowcodedemo.top/images/LuckyC/lucky_1731780184020.png" alt=""></a></li>
+        </ul>
+        <!-- 小圆圈 动态添加-->
+        <ol class="circle"></ol>
+    </div>
+    <script>
+      function animate(element, target, callback) {
+        var current = element.offsetLeft;
+        var step = (target - current) / 10; // 调整这个值可以改变动画速度
+        var id = setInterval(function() {
+          current += step;
+          element.style.left = current + 'px';
+          if (Math.abs(current - target) < Math.abs(step)) {
+            clearInterval(id);
+            element.style.left = target + 'px';
+            if (callback) callback();
+          }
+        }, 10); // 调整这个值可以改变动画的帧率
+      }
+
+      // 页面加载事件
+      window.addEventListener('load', function () {
+        // 1,实现鼠标移入移除显示隐藏功能
+        // 2,点击左右按钮切换图片  向左为负
+        // 3,图片切换时圆圈跟随变化
+        // 4,点击圆圈 切换对应图片
+        // 5,图片自行切换播放
+        // 6,鼠标移入移除 自动停止播放
+
+
+        // 1.1获取元素
+        var lunbo = document.querySelector('.lunbo');
+        var rightbtn = document.querySelector('.rightbtn');
+        var leftbtn = document.querySelector('.leftbtn');
+        var lunbowidth = lunbo.offsetWidth;
+        console.log(lunbowidth);
+        // 1.2鼠标经过显示
+        lunbo.addEventListener('mouseenter', function () {
+          rightbtn.style.display = "block";
+          leftbtn.style.display = "block";
+          // 鼠标移入定时器停止播放
+          clearInterval(timer);
+          timer = null; //清空定时器
+        })
+        // 1.3鼠标离开隐藏
+        lunbo.addEventListener('mouseleave', function () {
+          rightbtn.style.display = "none";
+          leftbtn.style.display = "none";
+          //鼠标离开时再执行
+          timer = setInterval(function () {
+            //直接调用点击事件重复执行点击事件
+            rightbtn.click();
+          }, 3000)
+        })
+        // 1.4动态生成小圆圈  几张图片就生成几个圈
+        var ul = lunbo.querySelector('ul');
+        var ol = lunbo.querySelector('.circle');
+        for (var i = 0; i < ul.children.length; i++) {
+          // 创建小li
+          var li = document.createElement('li');
+          // 记录当前小圆圈的索引号  自定义属性来做
+          li.setAttribute('index', i);
+          // 追加ol中
+          ol.appendChild(li);
+          // 排它思想,在生成小圆的同时直接绑定点击事件
+          li.addEventListener('click', function () {
+            for (var i = 0; i < ol.children.length; i++) {
+              ol.children[i].className = "";
+            }
+            this.className = 'current';
+            // 点击圆圈,移动图片,也就是ul  ul移动距离=小圆圈索引*图片的宽度  向左为负值
+            // 当你点击某个li时 就得到当前li的索引
+            var index = this.getAttribute('index');
+            //点击某个li  把li的索引给num
+            num = index;
+            // 当点击某个li时  li索引给.circle
+            circle = index;
+            // 调用动画函数
+            animate(ul, -index * lunbowidth);
+          })
+        }
+        // 2.1初始化默认样式 第一个圆为白色
+        ol.children[0].className = 'current';
+        // 复制一张图片放到最后一张  复制的图片不会生成圆圈  加true深克隆
+        var first = ul.children[0].cloneNode(true);
+        ul.appendChild(first);
+        // 点击右侧按钮 图片切换一张
+        var num = 0;
+        // circle控制圆圈的播放
+        var circle = 0;
+        var flag = true;
+        rightbtn.addEventListener('click', function () {
+          if (flag) {
+            flag = false;  //关闭
+            //如果点击到了最后一张图片 使ul的left值为0
+            if (num == ul.children.length - 1) {
+              ul.style.left = 0;
+              num = 0;
+            }
+            num++;
+            animate(ul, -num * lunbowidth, function () {
+              flag = true;  //打开
+            });
+            // 点击右侧按钮 圆圈对应跟随变化  声明变量控制小圆切换
+            circle++;
+            //判断 如果cirle==4  说明走到最后我们克隆的这张图片  circle=0;
+            if (circle == ol.children.length) {
+              circle = 0;
+            }
+
+
+            // 先清除其余小圆圈的current类名
+            // for (var i = 0; i < ol.children.length; i++) {
+            //     ol.children[i].className = '';
+            // }
+            // // 留下当前的小圆圈的current类名
+            // ol.children[circle].className = 'current';
+
+
+            // 调用函数
+            getCurrent();
+          }
+        })
+        leftbtn.addEventListener('click', function () {
+          if (flag) {
+            flag = false;
+            if (num == 0) {
+              num = ul.children.length - 1;
+              ul.style.left = -num * lunbowidth + 'px';
+            }
+            num--;
+            animate(ul, -num * lunbowidth, function () {
+              flag = true;
+            })
+            circle--;
+            // 判断如果circle<0  第一张图片小圆要改为第四个索引为3
+            circle = circle < 0 ? ol.children.length - 1 : circle;
+
+            // 重复代码封装函数
+
+            // 先清除其余小圆圈的current类名
+            // for (var i = 0; i < ol.children.length; i++) {
+            //     ol.children[i].className = '';
+            // }
+            // // 留下当前的小圆圈的current类名
+            // ol.children[circle].className = 'current';
+
+
+            // 调用函数
+            getCurrent();
+
+          }
+        })
+        // 排它思想
+        function getCurrent() {
+          for (var i = 0; i < ol.children.length; i++) {
+            ol.children[i].className = '';
+          }
+          ol.children[circle].className = 'current';
+        }
+
+        // 自动播放轮播图
+        var timer = setInterval(function () {
+          //直接调用点击事件重复执行点击事件
+          rightbtn.click();
+        }, 3000)
+      })
+    </script>
+</body>
+</html>
