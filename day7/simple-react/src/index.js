@@ -28,6 +28,19 @@ function MyFunctionComponent () {
   </div>
 }
 
+let MyFunctionComponent11 = React.forwardRef((props, ref) => {
+  return (
+    <div ref={ref}>
+      React Function Component
+      <p>p1</p>
+      <p>p2</p>
+      <p>p3</p>
+    </div>
+  )
+})
+let result = <MyFunctionComponent11 />
+console.log(result, 'result')
+
 // 实现类组件渲染 - 自定义类组件
 class MyClassComponent extends React.Component {
   constructor (props) {
@@ -106,4 +119,4 @@ class AutoFocusTextInput extends React.Component {
 }
 
 // 自己实现 render
-ReactDOM.render(<AutoFocusTextInput />, document.getElementById('root'));
+ReactDOM.render(<MyFunctionComponent />, document.getElementById('root'));

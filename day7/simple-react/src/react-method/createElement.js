@@ -1,4 +1,4 @@
-import { REACT_ELEMENT } from '../constant';
+import { REACT_ELEMENT, REACT_FORWARD_REF } from '../constant';
 import { Component } from './Component'
 /**
  * 1. 处理key
@@ -51,9 +51,17 @@ export function createRef() {
   return { current: null }
 }
 
+export function forwardRef(render) {
+  return {
+    $$typeof: REACT_FORWARD_REF,
+    render
+  }
+}
+
 const React = {
   createElement,
   Component,
-  createRef
+  createRef,
+  forwardRef
 }
 export default React;

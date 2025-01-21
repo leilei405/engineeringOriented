@@ -1,4 +1,4 @@
-import {REACT_ELEMENT} from "../constant";
+import {REACT_ELEMENT, REACT_FORWARD_REF } from "../constant";
 import {addEvent} from "./event";
 
 /**
@@ -68,6 +68,11 @@ function createDOM (VNode) {
   // 3. 根据虚拟 DOM 的类型创建真实 DOM
   const { type, props, ref } = VNode;
   let dom;
+  // 处理 forwardRef
+  if (typeof type === 'object' && type.$$typeof === REACT_FORWARD_REF) {
+    return getDOMFromForwardRefComponent(VNode);
+  }
+
   // 处理类组件逻辑
   if (typeof type === 'function' && type.IS_CLASS_COMPONENT && VNode.$$typeof === REACT_ELEMENT) {
     return getDOMFromClassComponent(VNode);
@@ -78,6 +83,7 @@ function createDOM (VNode) {
     return getDOMFromFunctionComponent(VNode);
   }
 
+  // 普通的 DOM 节点
   if (type && VNode.$$typeof === REACT_ELEMENT) {
     dom = document.createElement(type);
   }
@@ -114,6 +120,14 @@ function getDOMFromClassComponent (VNode) {
   ref && (ref.current = classComponent); // 类组件保存 ref 引用  classComponent 实例
   const renderVNode = classComponent.render();
   classComponent.oldVNode = renderVNode;
+  if (!renderVNode) return null;
+  return createDOM(renderVNode);
+}
+
+// 获取 forwardRef 组件的 DOM
+function getDOMFromForwardRefComponent (VNode) {
+  const { type, props, ref } = VNode;
+  const renderVNode = type.render(props, ref);
   if (!renderVNode) return null;
   return createDOM(renderVNode);
 }
