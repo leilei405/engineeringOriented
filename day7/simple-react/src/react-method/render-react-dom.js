@@ -66,7 +66,7 @@ function createDOM (VNode) {
   // 1. 创建元素
   // 2. 处理子元素
   // 3. 根据虚拟 DOM 的类型创建真实 DOM
-  const { type, props } = VNode;
+  const { type, props, ref } = VNode;
   let dom;
   // 处理类组件逻辑
   if (typeof type === 'function' && type.IS_CLASS_COMPONENT && VNode.$$typeof === REACT_ELEMENT) {
@@ -95,6 +95,7 @@ function createDOM (VNode) {
   setPropsForDOM(dom, props);
   // 将虚拟 DOM 保存到真实 DOM 上
   VNode.dom = dom;
+  ref && (ref.current = dom); // 原生 DOM 保存 ref 引用
   return dom;
 }
 
@@ -108,15 +109,11 @@ function getDOMFromFunctionComponent (VNode) {
 
 // 获取类组件的 DOM 判断传入的是不是一个类组件
 function getDOMFromClassComponent (VNode) {
-  const { type, props } = VNode;
+  const { type, props, ref } = VNode;
   const classComponent = new type(props);
+  ref && (ref.current = classComponent); // 类组件保存 ref 引用  classComponent 实例
   const renderVNode = classComponent.render();
   classComponent.oldVNode = renderVNode;
-  // TODO: 需要删除的代码 start
-  // setTimeout(() => {
-  //   classComponent.setState({name: 'Lucky'})
-  // }, 3000)
-  // TODO: 需要删除的代码 end
   if (!renderVNode) return null;
   return createDOM(renderVNode);
 }

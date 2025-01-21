@@ -33,9 +33,6 @@ export class Component {
   }
 }
 
-
-
-
 // 模拟 实现 React 状态更新器
 class Updater {
   constructor(ClassComponentInstance) {
