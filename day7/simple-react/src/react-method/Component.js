@@ -28,7 +28,7 @@ export class Component {
     let oldVNode = this.oldVNode; // 让类组件拥有一个oldVNode属性保存类组件实例对应的虚拟dom
     let oldDOM = findDomByVNode(oldVNode); // 将真实DOM保存到对应的虚拟 DOM 上
     let newVNode = this.render(); // 重新执行render函数 得到新的虚拟dom
-    updateDomTree(oldDOM, newVNode);
+    updateDomTree(oldVNode, newVNode, oldDOM);
     this.oldVNode = newVNode; // 4. 保存新的虚拟dom
   }
 }
