@@ -42,7 +42,7 @@ function mountArray (children, containerDOM) {
 }
 
 /**
- * 设置属性值
+ * 处理 props 属性值
  * @param dom 真实 DOM
  * @param VNodeProps 属性
  */
@@ -57,6 +57,9 @@ function setPropsForDOM (dom, VNodeProps) {
         dom.style[item] = VNodeProps[key][item];
       })
     } else if (/^on[A-Z].*/.test(key)) {
+      // dom: DOM --> 原生 DOM
+      // key.toLowerCase(): onClick --> onclick
+      // VNodeProps[key]: --> 事件处理函数
       addEvent(dom, key.toLowerCase(), VNodeProps[key])
     } else {
       dom[key] = VNodeProps[key];
@@ -145,11 +148,13 @@ function getDOMFromForwardRefComponent (VNode) {
   return createDOM(renderVNode);
 }
 
+// 根据虚拟 DOM 找到真实 DOM
 export function findDomByVNode (VNode) {
   if (!VNode) return;
   if (VNode.dom) return VNode.dom;
 }
 
+// 更新 DOM 树
 export function updateDomTree (oldVNode, newVNode, oldDOM) {
   // 第一版：直接替换
   // let parentNode = oldDOM.parentNode;
@@ -184,11 +189,13 @@ export function updateDomTree (oldVNode, newVNode, oldDOM) {
 
 }
 
+// 删除节点
 function removeNode (VNode) {
   const currentDOM = findDomByVNode(VNode);
   currentDOM && currentDOM.remove();
 }
 
+// 深度 DOM 差异
 function deepDOMDiff (oldVNode, newVNode) {
   const diffTypeMap = {
     ORIGIN_NODE: typeof oldVNode.type === 'string', // 原生节点

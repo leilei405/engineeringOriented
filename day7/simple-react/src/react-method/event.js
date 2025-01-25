@@ -3,7 +3,7 @@ import { updaterQueue, flushUpdateQueue } from './Component'
 export function addEvent (dom, eventName, bindFunction) {
     dom.attach = dom.attach || {};
     dom.attach[eventName] = bindFunction;
-    // 事件合成机制核心点一： 给真实 DOM 绑定事件
+    // 事件合成机制核心点一： 给真实 DOM 绑定事件  事件绑定到document上
     // 如果真实 DOM 上已经绑定过事件了，那么就不需要再绑定了
     if (!document[eventName]) {
         document[eventName] = dispatchEvent;
@@ -31,9 +31,11 @@ function dispatchEvent (nativeEvent) {
 function createSyntheticEvent (nativeEvent) {
     // 事件合成机制核心点三： 封装合成事件
     let nativeEventKeyValues = {} // 获取原生事件的所有属性 进行遍历
+
     for (let key in nativeEvent) {
       nativeEventKeyValues[key] = typeof nativeEvent[key] === 'function' ? nativeEvent[key].bind(nativeEvent) : nativeEvent[key];
     }
+
     let syntheticEvent = Object.assign(nativeEventKeyValues,{
       nativeEvent,
       isDefaultPrevented: false, // 阻止默认事件
