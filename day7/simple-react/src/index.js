@@ -101,6 +101,22 @@ class CustomTextInput extends React.Component {
   }
 }
 
+class MyClassComponent1 extends React.Component {
+  constructor (props) {
+    super(props);
+    this.state = {}
+  }
+
+  render () {
+    return <div>
+      React Class Component
+      <p>p1</p>
+      <p>p2</p>
+      <p>p3</p>
+    </div>
+  }
+}
+
 class AutoFocusTextInput extends React.Component {
   constructor(props) {
     super(props);

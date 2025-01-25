@@ -70,6 +70,7 @@ function createDOM (VNode) {
   // 2. 处理子元素
   // 3. 根据虚拟 DOM 的类型创建真实 DOM
   const { type, props, ref } = VNode;
+  // console.log(type.IS_CLASS_COMPONENT, 'type')
   let dom;
   // 处理 forwardRef
   if (typeof type === 'object' && type.$$typeof === REACT_FORWARD_REF) {
@@ -77,7 +78,7 @@ function createDOM (VNode) {
   }
 
   // 处理类组件逻辑
-  if (typeof type === 'function' && type.IS_CLASS_COMPONENT && VNode.$$typeof === REACT_ELEMENT) {
+  if (typeof type === 'function' && VNode.$$typeof === REACT_ELEMENT && type.IS_CLASS_COMPONENT) {
     return getDOMFromClassComponent(VNode);
   }
 
@@ -112,7 +113,7 @@ function createDOM (VNode) {
 
 // 获取函数组件的 DOM 判断传入的是不是一个函数组件
 function getDOMFromFunctionComponent (VNode) {
-  const { type, props } = VNode;
+  const { type, props } = VNode; // VNode 虚拟 DOM
   const renderVNode = type(props);
   if (!renderVNode) return null;
   return createDOM(renderVNode);
