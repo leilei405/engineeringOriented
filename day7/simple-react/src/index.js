@@ -46,25 +46,23 @@ class MyClassComponent extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      name: 'Lucky1111',
-      count : '1'
+      count : 'init+'
     }
   }
 
   updateText() {
     this.setState({
-      count: this.state.count + 1
+      count: this.state.count + 'add'
     })
   }
 
   render () {
     return <div>
       React Class Component
-      <p>{ this.state.name }</p>
+      <p>嘿嘿哈哈</p>
       <p>p2</p>
-      <p onClick={() => this.updateText()}>点击触发事件</p>
-      <p>{ this.state.count }dddd</p>
-      <MyFunctionComponent />
+      <button onClick={() => this.updateText()}>点击触发更新 count 状态</button>
+      <p>State 数据：{ this.state.count }</p>
     </div>
   }
 }
@@ -135,4 +133,4 @@ class AutoFocusTextInput extends React.Component {
 }
 
 // 自己实现 render
-ReactDOM.render(<MyFunctionComponent />, document.getElementById('root'));
+ReactDOM.render(<MyClassComponent />, document.getElementById('root'));

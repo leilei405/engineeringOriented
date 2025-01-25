@@ -105,8 +105,7 @@ function createDOM (VNode) {
   }
 
   setPropsForDOM(dom, props);
-  // 将虚拟 DOM 保存到真实 DOM 上
-  VNode.dom = dom;
+  VNode.dom = dom; // 将虚拟 DOM 保存到真实 DOM 上
   ref && (ref.current = dom); // 原生 DOM 保存 ref 引用
   return dom;
 }
@@ -126,6 +125,14 @@ function getDOMFromClassComponent (VNode) {
   ref && (ref.current = classComponent); // 类组件保存 ref 引用  classComponent 实例
   const renderVNode = classComponent.render();
   classComponent.oldVNode = renderVNode;
+
+  // 测试更新 Count 数据  测试代码
+  setTimeout(() => {
+    classComponent.setState({
+      count: 'test update'
+    })
+  }, 1000)
+
   if (!renderVNode) return null;
   return createDOM(renderVNode);
 }
