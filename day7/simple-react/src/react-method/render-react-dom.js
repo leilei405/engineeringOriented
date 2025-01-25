@@ -151,6 +151,12 @@ export function findDomByVNode (VNode) {
 }
 
 export function updateDomTree (oldVNode, newVNode, oldDOM) {
+  // 第一版：直接替换
+  // let parentNode = oldDOM.parentNode;
+  // parentNode.removeChild(oldDOM);
+  // parentNode.appendChild(createDOM(newVNode));
+
+  // 第二版：比较新旧虚拟 DOM 差异
   const typeMap = {
     NO_OPERATE: !oldVNode && !newVNode, // 新节点，旧节点 都不存在
     INSERT: !oldVNode && newVNode, // 新节点存在，旧节点不存在
@@ -175,6 +181,7 @@ export function updateDomTree (oldVNode, newVNode, oldDOM) {
         deepDOMDiff(oldVNode, newVNode); // 新节点和旧节点都存在 类型相同 --->>>> diff 算法 复用相关节点
         break;
   }
+
 }
 
 function removeNode (VNode) {
