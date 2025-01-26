@@ -124,14 +124,14 @@ function getDOMFromFunctionComponent (VNode) {
 // 获取类组件的 DOM 判断传入的是不是一个类组件
 function getDOMFromClassComponent (VNode) {
   const { type, props, ref } = VNode;
-  const classComponent = new type(props);
-  ref && (ref.current = classComponent); // 类组件保存 ref 引用  classComponent 实例
-  const renderVNode = classComponent.render();
-  classComponent.oldVNode = renderVNode;
+  const instance = new type(props);
+  ref && (ref.current = instance); // 类组件保存 ref 引用  classComponent 实例
+  const renderVNode = instance.render();
+  instance.oldVNode = renderVNode;
 
-  // 测试更新 Count 数据  测试代码
+  // 测试更新 Count 数据  测试代码  方便调试
   setTimeout(() => {
-    classComponent.setState({
+    instance.setState({
       count: 'test update'
     })
   }, 1000)
