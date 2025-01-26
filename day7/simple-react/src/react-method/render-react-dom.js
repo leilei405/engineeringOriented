@@ -254,7 +254,6 @@ function updateChildren(parentDOM, oldVNodeChildren, newVNodeChildren) {
 
   let lastNotChangedIndex = -1; // 最后一个没有变化的索引
   let oldKeyChildMap = {}; // 旧的 key 对应的子节点
-  let newKeyChildMap = {}; // 新的 key 对应的子节点
 
   oldVNodeChildren.forEach((oldVNode, index) => {
     let oldKey = oldVNode && oldVNode.key ? oldVNode.key : index;
