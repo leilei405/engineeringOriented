@@ -29,7 +29,10 @@ export class Component {
     let oldVNode = this.oldVNode; // 让类组件拥有一个oldVNode属性, 保存类组件实例对应的虚拟dom
     let oldDOM = findDomByVNode(oldVNode); // 将真实DOM保存到对应的虚拟 DOM 上
     let newVNode = this.render(); // 重新执行render函数 得到新的虚拟dom
+
+    // 比较老的虚拟dom和新的虚拟dom，进行对 oldDOM 的更新操作
     updateDomTree(oldVNode, newVNode, oldDOM);
+
     this.oldVNode = newVNode; // 4. 保存新的虚拟dom
   }
 }
@@ -71,10 +74,8 @@ class Updater {
         return {...preState,...newState };
       }, ClassComponentInstance.state)
 
-      // 2. 清空状态队列
-      this.pendingStates.length = 0;
-      // 3. 重新渲染进行更新
-      ClassComponentInstance.updateComponent();
+      this.pendingStates.length = 0; // 2. 清空状态队列
+      ClassComponentInstance.updateComponent(); // 3. 重新渲染进行更新
   }
 }
 

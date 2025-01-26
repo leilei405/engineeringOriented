@@ -61,13 +61,13 @@ class MyClassComponentSetState extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      count : 'init+'
+      count : 'init++'
     }
   }
 
   updateText(a) {
     this.setState({
-      count: this.state.count + 'add'
+      count: this.state.count
     })
   }
 
@@ -131,4 +131,4 @@ class AutoFocusTextInput extends React.Component {
 }
 
 // 自己实现 render
-ReactDOM.render(<CustomTextInput />, document.getElementById('root'));
+ReactDOM.render(<MyClassComponentSetState />, document.getElementById('root'));
