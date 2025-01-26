@@ -75,8 +75,8 @@ function createDOM (VNode) {
   const { type, props, ref } = VNode;
   // console.log(type.IS_CLASS_COMPONENT, 'type')
   let dom;
-  // 处理 forwardRef
-  if (typeof type === 'object' && type.$$typeof === REACT_FORWARD_REF) {
+  // 处理 函数组件 forwardRef
+  if (type && typeof type === 'object' && type.$$typeof === REACT_FORWARD_REF) {
     return getDOMFromForwardRefComponent(VNode);
   }
 
