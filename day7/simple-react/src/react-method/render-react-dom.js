@@ -245,7 +245,7 @@ function updateFunctionComponent(oldVNode, newVNode) {
 // 更新类组件
 function updateClassComponent(oldVNode, newVNode) {
   const classInstance = newVNode.classInstance = oldVNode.classInstance;
-  classInstance.updater.launchUpdate();
+  classInstance.updater.launchUpdate(newVNode.props);
 }
 
 // DOM DIFF算法的核心

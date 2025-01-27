@@ -120,7 +120,11 @@ class MyClassComponentDiff extends React.Component{
   newArr = ['C', 'B', 'E', 'F', 'A']
   constructor(props) {
     super(props);
-    this.state = { arr: this.oldArr };
+    this.state = {
+      arr: this.oldArr,
+      date: new Date()
+    };
+
   }
   updateShowArr(){
     this.setState({
@@ -131,12 +135,28 @@ class MyClassComponentDiff extends React.Component{
 
   // 首次渲染
   componentDidMount(){
+    this.timerID = setInterval(
+        () => this.tick(),
+        1000
+    );
     console.log('componentDidMount')
   }
 
   // 更新
   componentDidUpdate(){
     console.log('componentDidUpdate')
+  }
+
+  // 优化 shouldComponentUpdate
+  shouldComponentUpdate(){
+    console.log('shouldComponentUpdate')
+    return false
+  }
+
+  tick() {
+    this.setState({
+      date: new Date()
+    });
   }
 
   render(){
@@ -151,7 +171,7 @@ class MyClassComponentDiff extends React.Component{
           display: 'inline-block',
           padding: '6px 12px'
         }
-      } onClick={ () => this.updateShowArr() }>Change The Text</div>
+      } onClick={ () => this.updateShowArr() }>Change The Text {this.state.date.toLocaleTimeString()}</div>
       <div>
         {
           this.state.arr.map(item => {

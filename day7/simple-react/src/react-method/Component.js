@@ -65,22 +65,40 @@ class Updater {
   }
 
   // 不是预处理的时候直接 --->>> 启动更新
-  launchUpdate() {
+  launchUpdate(nextProps) {
      const { ClassComponentInstance, pendingStates } = this;
-     if (pendingStates.length === 0) return;
-
+     if (pendingStates.length === 0 && !nextProps) return; // 没有状态需要更新，直接返回
+     let isShouldUpdate = true; // 是否需要更新
      // 1. 合并状态属性 合并方式 1
      // pendingStates.forEach((item) => {
      //   ClassComponentInstance.state = {...ClassComponentInstance.state,...item };
      // });
 
       // 1. 合并状态属性  合并方式 2
-      ClassComponentInstance.state = this.pendingStates?.reduce((preState, newState) => {
+      // 即将要更新的状态
+      let nextState = this.pendingStates?.reduce((preState, newState) => {
         return {...preState,...newState };
-      }, ClassComponentInstance.state)
+      }, ClassComponentInstance.state);
 
-      this.pendingStates.length = 0; // 2. 清空状态队列
-      ClassComponentInstance.updateComponent(); // 3. 重新渲染进行更新
+      if (ClassComponentInstance.shouldComponentUpdate && (!ClassComponentInstance.shouldComponentUpdate(nextProps, nextState))) {
+        isShouldUpdate = false;
+      }
+
+      // 清空状态队列
+      this.pendingStates.length = 0;
+
+      // 合并属性
+      if (nextProps) {
+        ClassComponentInstance.props = nextProps
+      }
+
+      // 合并状态属性
+      ClassComponentInstance.state = nextState;
+
+      // 重新渲染进行更新
+      if (isShouldUpdate) {
+        ClassComponentInstance.updateComponent()
+      }
   }
 }
 
