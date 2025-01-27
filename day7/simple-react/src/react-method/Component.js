@@ -28,6 +28,13 @@ export class Component {
     // 3. 将真实的 dom 替换掉老的真实 dom，然后挂载到页面上
     let oldVNode = this.oldVNode; // 让类组件拥有一个oldVNode属性, 保存类组件实例对应的虚拟dom
     let oldDOM = findDomByVNode(oldVNode); // 将真实DOM保存到对应的虚拟 DOM 上
+
+    // 4. 组件更新前，执行组件的生命周期函数
+    if (this.constructor.getDerivedStateFromProps) {
+      let newState = this.constructor.getDerivedStateFromProps(this.props, this.state) || {};
+      this.state = { ...this.state, ...newState };
+    }
+
     let newVNode = this.render(); // 重新执行render函数 得到新的虚拟dom
 
     // 比较老的虚拟dom和新的虚拟dom，进行对 oldDOM 的更新操作

@@ -183,5 +183,44 @@ class MyClassComponentDiff extends React.Component{
   }
 }
 
+// getDerivedStateFromProps 用例
+class ParentClass extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      init: 'init'
+    }
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('getDerivedStateFromProps', props, state)
+  }
+
+  changeValue = () => {
+    this.setState({
+      init: 'change'
+    })
+  }
+
+  render() {
+    return <div>
+      <input type='button' value="点击" onClick={() => this.changeValue()} />
+      <ChildClass count={this.state.init} />
+    </div>
+  }
+}
+class ChildClass extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {}
+  }
+
+  render() {
+    return <div>
+      <div>ChildClass</div>
+      <div>count: {this.props.count}</div>
+    </div>
+  }
+}
 // 自己实现 render
-ReactDOM.render(<MyClassComponentDiff />, document.getElementById('root'));
+ReactDOM.render(<ParentClass />, document.getElementById('root'));

@@ -128,6 +128,7 @@ function getDOMFromClassComponent (VNode) {
   ref && (ref.current = instance); // 类组件保存 ref 引用  classComponent 实例
   const renderVNode = instance.render();
   instance.oldVNode = renderVNode;
+  VNode.classInstance = instance; // 保存类组件实例
 
   // 测试更新 Count 数据  测试代码  方便调试
   // setTimeout(() => {
