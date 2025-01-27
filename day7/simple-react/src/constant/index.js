@@ -13,7 +13,8 @@ export const MOVE = Symbol('dom.diff.move')
 // diff 算法的操作类型 创建
 export const CREATE = Symbol('dom.diff.create')
 
-
+// memo 组件的类型
+export const REACT_MEMO = Symbol('react.memo')
 
 
 // 定义常量 Symbol 类型

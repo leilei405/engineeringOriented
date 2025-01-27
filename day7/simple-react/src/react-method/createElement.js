@@ -1,4 +1,4 @@
-import { REACT_ELEMENT, REACT_FORWARD_REF } from '../constant';
+import { REACT_ELEMENT, REACT_FORWARD_REF, REACT_MEMO } from '../constant';
 import { Component } from './Component'
 import { toVNode, shallowEqual } from "../utils";
 /**
@@ -63,11 +63,20 @@ class PureComponent extends Component {
   }
 }
 
+function memo (type, compare)  {
+  return {
+    $$typeof: REACT_MEMO,
+    type,
+    compare
+  }
+}
+
 const React = {
   createElement,
   Component,
   createRef,
   forwardRef,
-  PureComponent
+  PureComponent,
+  memo
 }
 export default React;
