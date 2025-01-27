@@ -199,6 +199,9 @@ export function updateDomTree (oldVNode, newVNode, oldDOM) {
 function removeNode (VNode) {
   const currentDOM = findDomByVNode(VNode);
   currentDOM && currentDOM.remove();
+  if (VNode.classInstance && VNode.classInstance.componentWillUnmount) {
+    VNode.classInstance.componentWillUnmount();
+  }
 }
 
 // 深度 DOM 差异

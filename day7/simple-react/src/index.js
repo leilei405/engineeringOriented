@@ -262,6 +262,10 @@ class ScrollingList extends React.Component {
     this.isAppend = !this.isAppend
   }
 
+  componentWillUnmount() {
+    console.log('componentWillUnmount')
+  }
+
   render() {
     return (<div>
           <input type="button" onClick={()=>this.appendData()}  value={"追加/暂停追加数据"}/>
