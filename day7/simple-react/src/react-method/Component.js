@@ -34,6 +34,11 @@ export class Component {
     updateDomTree(oldVNode, newVNode, oldDOM);
 
     this.oldVNode = newVNode; // 4. 保存新的虚拟dom
+
+    // 5. 组件更新完成后，执行组件的生命周期函数
+    if (this.componentDidUpdate) {
+      this.componentDidUpdate(this.props, this.state);
+    }
   }
 }
 

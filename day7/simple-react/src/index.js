@@ -37,7 +37,7 @@ let result = React.forwardRef((props, ref) => {
   )
 })
 // let result = <MyFunctionComponentExample />
-console.log(result, 'result')
+// console.log(result, 'result')
 
 // 实现类组件渲染 - 自定义类组件  纯展示
 class MyClassComponent extends React.Component {
@@ -128,6 +128,17 @@ class MyClassComponentDiff extends React.Component{
     })
     this.isReset = !this.isReset
   }
+
+  // 首次渲染
+  componentDidMount(){
+    console.log('componentDidMount')
+  }
+
+  // 更新
+  componentDidUpdate(){
+    console.log('componentDidUpdate')
+  }
+
   render(){
     return <div>
       <div className='test-class'

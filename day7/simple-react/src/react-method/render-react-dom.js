@@ -130,13 +130,15 @@ function getDOMFromClassComponent (VNode) {
   instance.oldVNode = renderVNode;
 
   // 测试更新 Count 数据  测试代码  方便调试
-  setTimeout(() => {
-    instance.setState({
-      count: 'test update'
-    })
-  }, 1000)
-
+  // setTimeout(() => {
+  //   instance.setState({
+  //     count: 'test update'
+  //   })
+  // }, 1000)
   if (!renderVNode) return null;
+  if (instance.componentDidMount) {
+    instance.componentDidMount();
+  }
   return createDOM(renderVNode);
 }
 
@@ -298,7 +300,6 @@ function updateChildren(parentDOM, oldVNodeChildren, newVNodeChildren) {
   })
 
   actions.forEach((action) => {
-    console.log(action, 'action')
     const {  type, oldVNode, newVNode, index } = action;
     let childNodes = parentDOM.childNodes;
     let childNode = childNodes[index];
