@@ -1,4 +1,5 @@
 import { findDomByVNode, updateDomTree } from './render-react-dom'
+import { deepClone } from '../utils'
 /**
  * 模拟 React 基类
  */
@@ -22,7 +23,7 @@ export class Component {
   }
 
   // 重新渲染组件
-  updateComponent() {
+  updateComponent(prevProps, prevState) {
     // 1. 获取重新执行 render 函数后的虚拟dom 新的虚拟dom
     // 2. 根据新虚拟 dom 生成新的真实dom
     // 3. 将真实的 dom 替换掉老的真实 dom，然后挂载到页面上
@@ -34,6 +35,8 @@ export class Component {
       let newState = this.constructor.getDerivedStateFromProps(this.props, this.state) || {};
       this.state = { ...this.state, ...newState };
     }
+
+    this.getSnapshotBeforeUpdate && this.getSnapshotBeforeUpdate(prevProps, prevState);
 
     let newVNode = this.render(); // 重新执行render函数 得到新的虚拟dom
 
@@ -76,6 +79,8 @@ class Updater {
      const { ClassComponentInstance, pendingStates } = this;
      if (pendingStates.length === 0 && !nextProps) return; // 没有状态需要更新，直接返回
      let isShouldUpdate = true; // 是否需要更新
+     let prevProps = deepClone(ClassComponentInstance.props);
+     let prevState = deepClone(ClassComponentInstance.state);
      // 1. 合并状态属性 合并方式 1
      // pendingStates.forEach((item) => {
      //   ClassComponentInstance.state = {...ClassComponentInstance.state,...item };
@@ -104,7 +109,7 @@ class Updater {
 
       // 重新渲染进行更新
       if (isShouldUpdate) {
-        ClassComponentInstance.updateComponent()
+        ClassComponentInstance.updateComponent(prevProps, prevState)
       }
   }
 }
