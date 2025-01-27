@@ -1,6 +1,6 @@
 import { REACT_ELEMENT, REACT_FORWARD_REF } from '../constant';
 import { Component } from './Component'
-import {toVNode} from "../utils";
+import { toVNode, shallowEqual } from "../utils";
 /**
  * 1. 处理key
  * 2. 处理props
@@ -57,10 +57,17 @@ export function forwardRef(render) {
   }
 }
 
+class PureComponent extends Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    return !shallowEqual(this.props, nextProps) || !shallowEqual(this.state, nextState);
+  }
+}
+
 const React = {
   createElement,
   Component,
   createRef,
-  forwardRef
+  forwardRef,
+  PureComponent
 }
 export default React;

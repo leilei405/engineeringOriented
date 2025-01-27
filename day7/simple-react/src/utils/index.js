@@ -53,3 +53,16 @@ export const getType = (obj) => {
   }
   return typeMap[Object.prototype.toString.call(obj)];
 }
+
+export const shallowEqual = (obj1, obj2) => {
+  if (obj1 === obj2) return true;
+  if (getType(obj1) !== 'object' || getType(obj2) !== 'object') return false;
+  let keys1 = Object.keys(obj1);
+  let keys2 = Object.keys(obj2);
+  if (keys1.length !== keys2.length) return false;
+  for (let key in obj1) {
+    if (!obj2.hasOwnProperty(key)) return false;
+    if (obj1[key]!== obj2[key]) return false;
+  }
+  return true;
+}
