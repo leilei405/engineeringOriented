@@ -1,5 +1,6 @@
 import { REACT_ELEMENT, REACT_FORWARD_REF, REACT_TEXT_ELEMENT, MOVE, CREATE, REACT_MEMO } from "../constant";
 import { addEvent } from "./event";
+import {shallowEqual} from "../utils";
 
 /**
  * 渲染 React 元素
@@ -122,7 +123,7 @@ function getDOMFromFunctionComponent (VNode) {
   const { type, props } = VNode; // VNode 虚拟 DOM
   const renderVNode = type(props);
   if (!renderVNode) return null;
-  return createDOM(renderVNode);
+  return VNode.dom = createDOM(renderVNode);
 }
 
 // 获取类组件的 DOM 判断传入的是不是一个类组件
@@ -150,7 +151,7 @@ function getDOMFromClassComponent (VNode) {
 // 获取 memo 组件的 DOM
 function getDomByMemoFunctionComponent (VNode) {
   const { type, props } = VNode;
-  const renderVNode = type.type.render(props);
+  const renderVNode = type.type(props);
   if (!renderVNode) return null;
   VNode.oldRenderVNode = renderVNode;
   return createDOM(renderVNode);
@@ -224,7 +225,7 @@ function deepDOMDiff (oldVNode, newVNode) {
     CLASS_COMPONENT: typeof oldVNode.type ==='function' && oldVNode.type.IS_CLASS_COMPONENT, // 类组件
     FUNCTION_COMPONENT: typeof oldVNode.type ==='function', // 函数组件
     TEXT_NODE: oldVNode.type === REACT_TEXT_ELEMENT, // 文本节点
-    MEMO: oldVNode.type === REACT_MEMO, // memo 组件
+    MEMO: oldVNode.type.$$typeof === REACT_MEMO, // memo 组件
   }
 
   let DIFF_TYPE = Object.keys(diffTypeMap).filter((key) => diffTypeMap[key])[0]; // 第一个满足条件的
@@ -255,27 +256,20 @@ function deepDOMDiff (oldVNode, newVNode) {
 
 // 更新 memo 组件
 function updateMemoComponent(oldVNode, newVNode) {
-  const { type, props } = newVNode;
-  const { render, compare } = type;
-
-  const oldRenderVNode = oldVNode.oldRenderVNode;
-  if (!compare(oldRenderVNode.props, props)) {
+  let { type } = oldVNode;
+  if ( !type.compare && !shallowEqual(oldVNode.props, newVNode.props) || type.compare && !type.compare(oldVNode.props, newVNode.props)) {
     const oldDom = findDomByVNode(oldVNode);
-    let renderVNode = type.type(props);
+    let renderVNode = newVNode.type.type(newVNode.props);
     updateDomTree(oldVNode.oldRenderVNode, renderVNode, oldDom);
     newVNode.oldRenderVNode = renderVNode;
   } else {
-    newVNode.oldRenderVNode = oldRenderVNode;
+    newVNode.oldRenderVNode = oldVNode.oldRenderVNode;
   }
-
-  const renderVNode = render(props);
-  newVNode.oldRenderVNode = renderVNode;
-  updateDomTree(oldVNode.oldRenderVNode, renderVNode, oldVNode.dom);
 }
 
 // 更新函数组件
 function updateFunctionComponent(oldVNode, newVNode) {
-  let oldDOM = findDomByVNode(oldVNode);
+  let oldDOM = newVNode.dom = findDomByVNode(oldVNode);
   if (!oldDOM) return;
   const { type, props } = newVNode;
   let newRenderVNode = type(props);

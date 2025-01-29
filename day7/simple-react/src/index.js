@@ -289,17 +289,17 @@ class ScrollingList extends React.Component {
 }
 
 // PureComponent 用例
-class Greeting extends React.PureComponent {
+class Greeting1 extends React.PureComponent {
   render() {
     console.log("Greeting was rendered at", new Date().toLocaleTimeString());
     return <h3>Hello{this.props.name && ', '}{this.props.name}!</h3>;
   }
 }
 
-// const Greeting = React.memo(function Greeting({ name }) {
-//   console.log("Greeting was rendered at", new Date().toLocaleTimeString());
-//   return <h3>Hello{name && ', '}{name}!</h3>;
-// });
+const Greeting = React.memo(function Greeting({ name }) {
+  console.log("Greeting was rendered at", new Date().toLocaleTimeString());
+  return <h3>Hello{name && ', '}{name}!</h3>;
+});
 
 
 class MyApp extends React.Component {
@@ -332,5 +332,6 @@ class MyApp extends React.Component {
     </div>
   };
 }
+
 // 自己实现 render
 ReactDOM.render(<MyApp />, document.getElementById('root'));
