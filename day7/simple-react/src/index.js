@@ -1,4 +1,4 @@
-// import React from 'react';
+// import React, {useReducer} from 'react';
 // import ReactDOM from 'react-dom/client';
 // import ReactDOM from 'react-dom';
 // const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -12,7 +12,7 @@
 
 
 // 自定义实现
-import React, { useState } from './react-method/createElement';
+import React, { useState, useReducer } from './react-method/createElement';
 import ReactDOM from './react-method/render-react-dom';
 
 // 实现函数组件渲染 - 自定义函数组件  纯展示
@@ -347,5 +347,30 @@ function MyFunctionComponent1() {
   )
 }
 
+// useReducer 用例 及实现
+function reducer(state, action) {
+  if (action.type === 'incremented_age') {
+    return {
+      age: state.age + 1
+    };
+  }
+  throw Error('Unknown action.');
+}
+
+function Counter() {
+  const [state, dispatch] = useReducer(reducer, { age: 42 });
+
+  return (<div>
+    <button
+      onClick={() => {
+        dispatch({ type: 'incremented_age' })
+      }}
+    >
+      Increment age
+    </button>
+    <p>Hello! You are {state.age}.</p>
+  </div>);
+}
+
 // 自己实现 render
-ReactDOM.render(<MyFunctionComponent1 />, document.getElementById('root'));
+ReactDOM.render(<Counter />, document.getElementById('root'));

@@ -15,3 +15,13 @@ export function useState(initialState) {
   }
   return [states[hookIndex++], setState];
 }
+
+export function useReducer(reducer, initValue) {
+  states[hookIndex] = states[hookIndex] || initValue;
+  const currentIndex = hookIndex;
+  function dispatch(action) {
+    states[currentIndex] = reducer(states[currentIndex], action);
+    emitUpdateForHooks();
+  }
+  return [states[hookIndex++], dispatch];
+}
