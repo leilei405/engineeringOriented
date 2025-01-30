@@ -12,7 +12,7 @@
 
 
 // 自定义实现
-import React from './react-method/createElement';
+import React, { useState } from './react-method/createElement';
 import ReactDOM from './react-method/render-react-dom';
 
 // 实现函数组件渲染 - 自定义函数组件  纯展示
@@ -301,7 +301,6 @@ const Greeting = React.memo(function Greeting({ name }) {
   return <h3>Hello{name && ', '}{name}!</h3>;
 });
 
-
 class MyApp extends React.Component {
   constructor(props){
     super(props)
@@ -333,5 +332,20 @@ class MyApp extends React.Component {
   };
 }
 
+// useState 用例 及实现
+function MyFunctionComponent1() {
+  const [count, setCount] = useState(0);
+  const handleAdd = () => {
+    setCount(count + 1)
+  }
+
+  return (
+      <div>
+        <h1>Number:___ { count }</h1>
+        <button onClick={handleAdd}>点击增加</button>
+      </div>
+  )
+}
+
 // 自己实现 render
-ReactDOM.render(<MyApp />, document.getElementById('root'));
+ReactDOM.render(<MyFunctionComponent1 />, document.getElementById('root'));

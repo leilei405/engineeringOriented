@@ -1,6 +1,7 @@
 import { REACT_ELEMENT, REACT_FORWARD_REF, REACT_MEMO } from '../constant';
 import { Component } from './Component'
 import { toVNode, shallowEqual } from "../utils";
+
 /**
  * 1. 处理key
  * 2. 处理props
@@ -71,6 +72,7 @@ function memo (type, compare)  {
   }
 }
 
+export * from '../hooks'
 const React = {
   createElement,
   Component,

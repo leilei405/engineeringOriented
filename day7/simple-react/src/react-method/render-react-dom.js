@@ -1,7 +1,8 @@
 import { REACT_ELEMENT, REACT_FORWARD_REF, REACT_TEXT_ELEMENT, MOVE, CREATE, REACT_MEMO } from "../constant";
 import { addEvent } from "./event";
-import {shallowEqual} from "../utils";
-
+import { shallowEqual } from "../utils";
+import { resetHookIndex } from "../hooks";
+export let emitUpdateForHooks;
 /**
  * 渲染 React 元素
  * @param VNode 虚拟 DOM
@@ -11,6 +12,10 @@ function render(VNode, containerDOM) {
     // 将虚拟 DOM 渲染成真实 DOM
     // 将得到的真实 containerDOM 插入到容器中
     mount(VNode, containerDOM);
+  emitUpdateForHooks = () => {
+    resetHookIndex();
+    updateDomTree(VNode, VNode, findDomByVNode(VNode));
+  }
 }
 
 /**
@@ -123,6 +128,7 @@ function getDOMFromFunctionComponent (VNode) {
   const { type, props } = VNode; // VNode 虚拟 DOM
   const renderVNode = type(props);
   if (!renderVNode) return null;
+  VNode.oldRenderVNode = renderVNode;
   return VNode.dom = createDOM(renderVNode);
 }
 
