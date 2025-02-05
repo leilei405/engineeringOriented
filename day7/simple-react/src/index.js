@@ -1,6 +1,6 @@
-// import React, {useReducer} from 'react';
+import React, {useMemo, useCallback, useState} from 'react';
 // import ReactDOM from 'react-dom/client';
-// import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom';
 // const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render(<div>React</div>);
 
@@ -12,8 +12,8 @@
 
 
 // 自定义实现
-import React, { useState, useReducer, useEffect, useRef, useImperativeHandle } from './react-method/createElement';
-import ReactDOM from './react-method/render-react-dom';
+// import React, { useState, useReducer, useEffect, useRef, useImperativeHandle, useMemo, useCallback } from './react-method/createElement';
+// import ReactDOM from './react-method/render-react-dom';
 
 // 实现函数组件渲染 - 自定义函数组件  纯展示
 function MyFunctionComponent () {
@@ -473,5 +473,34 @@ function ImperativeHandleTest() {
   </div>
 }
 
+// useMemo useCallback 用例 及实现
+function MemoCom () {
+  console.log('父组件渲染')
+  const [name, setName] = useState('jack');
+  const [age, setAge] = useState(18);
+
+  const data = useMemo(() => {
+    return { age }
+  }, [age])
+
+  const handleClick = useCallback(() => {
+    setAge(age + 1);
+  }, [age])
+
+  return <div>
+    <h1>年龄:___ { age } 名字:___ { name }</h1>
+    input: <input type="text" value={name} onChange={e => setName(e.target.value)} />
+    <MemoFunctionComponent data={data} handleClick={handleClick} />
+  </div>
+}
+
+const MemoFunctionComponent =  React.memo(function MemoChild (props) {
+  console.log('子组件渲染')
+  return <div>
+    <button onClick={props.handleClick}>点击增加{props.data.age}</button>
+  </div>
+})
+
+
 // 自己实现 render
-ReactDOM.render(<ImperativeHandleTest />, document.getElementById('root'));
+ReactDOM.render(<MemoCom />, document.getElementById('root'));

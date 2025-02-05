@@ -69,3 +69,15 @@ export function useRef(initialValue) {
 export function useImperativeHandle(ref, createHandle, deps) {
   ref.current = createHandle();
 }
+
+// useMemo
+export function useMemo(factory, deps) {
+  const currentIndex = hookIndex;
+  const [value, preDeps] = states[hookIndex] || [null, null];
+}
+
+// useCallback
+export function useCallback(callback, deps) {
+  const currentIndex = hookIndex;
+  const [value, preDeps] = states[hookIndex] || [null, null];
+}
