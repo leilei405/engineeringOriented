@@ -41,6 +41,11 @@ function mountArray (children, containerDOM) {
     // } else {
     //   mount(children[i], containerDOM);
     // }
+    if (!children[i]) {
+      children.splice(i, 1);
+      // i--;
+      continue;
+    }
     children[i].index = i;
     mount(children[i], containerDOM);
   }
