@@ -54,7 +54,13 @@ export function useLayoutEffect(callback, deps = []) {
       destroyFunction && destroyFunction();
       states[currentIndex] = [callback(), deps];
     });
-
   }
   hookIndex++;
+}
+
+// useRef
+export function useRef(initialValue) {
+  const currentIndex = hookIndex;
+  states[hookIndex] = states[hookIndex] || { current: initialValue }
+  return states[hookIndex++];
 }

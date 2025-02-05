@@ -12,7 +12,7 @@
 
 
 // 自定义实现
-import React, { useState, useReducer, useEffect } from './react-method/createElement';
+import React, { useState, useReducer, useEffect, useRef } from './react-method/createElement';
 import ReactDOM from './react-method/render-react-dom';
 
 // 实现函数组件渲染 - 自定义函数组件  纯展示
@@ -433,5 +433,17 @@ export default function App() {
   );
 }
 
+// useRef 用例 及实现
+function TextInputWithFocusButton() {
+  const inputEl = useRef(null);
+  const handleClick = () => {
+    inputEl.current.focus();
+  }
+  return <div>
+    <input ref={inputEl} type="text" />
+    <button onClick={handleClick}>Focus the input</button>
+  </div>
+}
+
 // 自己实现 render
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<TextInputWithFocusButton />, document.getElementById('root'));
