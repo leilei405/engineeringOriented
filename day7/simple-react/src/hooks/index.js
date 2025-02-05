@@ -71,13 +71,24 @@ export function useImperativeHandle(ref, createHandle, deps) {
 }
 
 // useMemo
-export function useMemo(factory, deps) {
-  const currentIndex = hookIndex;
-  const [value, preDeps] = states[hookIndex] || [null, null];
+export function useMemo(dataFactory, deps = []) {
+  let [preData, preDeps] = states[hookIndex] || [null, null];
+  if(!states[hookIndex] || deps.some((item, index) => item !== preDeps[index])){
+    let newData = dataFactory()
+    states[hookIndex++] = [newData, deps]
+    return newData
+  }
+  hookIndex ++
+  return preData
 }
 
 // useCallback
 export function useCallback(callback, deps) {
-  const currentIndex = hookIndex;
-  const [value, preDeps] = states[hookIndex] || [null, null];
+  let [preCallback, preDeps] = states[hookIndex] || [null, null];
+  if(!states[hookIndex] || deps.some((item, index) => item !== preDeps[index])){
+    states[hookIndex++] = [callback, deps]
+    return callback
+  }
+  hookIndex ++
+  return preCallback
 }

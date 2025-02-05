@@ -1,6 +1,6 @@
-import React, {useMemo, useCallback, useState} from 'react';
+// import React, {useMemo, useCallback, useState} from 'react';
 // import ReactDOM from 'react-dom/client';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 // const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render(<div>React</div>);
 
@@ -12,8 +12,8 @@ import ReactDOM from 'react-dom';
 
 
 // 自定义实现
-// import React, { useState, useReducer, useEffect, useRef, useImperativeHandle, useMemo, useCallback } from './react-method/createElement';
-// import ReactDOM from './react-method/render-react-dom';
+import React, { useState, useReducer, useEffect, useRef, useImperativeHandle, useMemo, useCallback } from './react-method/createElement';
+import ReactDOM from './react-method/render-react-dom';
 
 // 实现函数组件渲染 - 自定义函数组件  纯展示
 function MyFunctionComponent () {
