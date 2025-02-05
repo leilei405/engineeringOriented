@@ -12,7 +12,7 @@
 
 
 // 自定义实现
-import React, { useState, useReducer, useEffect, useRef } from './react-method/createElement';
+import React, { useState, useReducer, useEffect, useRef, useImperativeHandle } from './react-method/createElement';
 import ReactDOM from './react-method/render-react-dom';
 
 // 实现函数组件渲染 - 自定义函数组件  纯展示
@@ -445,5 +445,33 @@ function TextInputWithFocusButton() {
   </div>
 }
 
+// useImperativeHandle 用例 及实现
+const MyInput = React.forwardRef(function MyInput(props, ref) {
+  const inputRef = useRef(null);
+  // 暴露给父组件的方法
+  useImperativeHandle(ref, () => {
+    return {
+      focus: () => {
+        inputRef.current.focus();
+      },
+      getValue: () => {
+        return inputRef.current.value = 'Hello, world!';
+      }
+    }
+  })
+  return <input {...props} ref={inputRef} />
+})
+function ImperativeHandleTest() {
+  const ref = useRef(null);
+  const handleClick = () => {
+    ref.current.focus();
+    ref.current.getValue();
+  }
+  return <div>
+    <MyInput label={"Enter your name"} ref={ref} type="text" />
+    <button onClick={handleClick}>Focus the input</button>
+  </div>
+}
+
 // 自己实现 render
-ReactDOM.render(<TextInputWithFocusButton />, document.getElementById('root'));
+ReactDOM.render(<ImperativeHandleTest />, document.getElementById('root'));
