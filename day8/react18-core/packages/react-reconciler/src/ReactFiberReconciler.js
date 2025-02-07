@@ -1,4 +1,5 @@
 import { createFiberRoot } from  './ReactFiberRoot'
+import { createUpdate, enqueueUpdate } from './ReactFiberClassUpdateQueue'
 
 /**
  * 创建容器，用于将虚拟DOM转换为真实DOM并插入到容器中。
@@ -16,10 +17,19 @@ const createContainer = (containerInfo) => {
  */
 const updateContainer = (element, container) => {
   // 1. 获取当前的根Fiber
+  const current = container.current
+
   // 2. 创建更新
+  const update = createUpdate()
+
   // 3. 要更新的虚拟DOM
+  update.payload = element;
+
   // 4. 将更新添加到当前根Fiber的更新队列上，并返回根节点
+  const root = enqueueUpdate(current, update)
+
   // 5. 在根Fiber上调度更新
+  scheduleUpdateOnFiber(root)
 }
 
 export { createContainer, updateContainer }
