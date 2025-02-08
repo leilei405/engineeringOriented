@@ -1,5 +1,6 @@
 import { createFiberRoot } from  './ReactFiberRoot'
 import { createUpdate, enqueueUpdate } from './ReactFiberClassUpdateQueue'
+import { scheduleUpdateOnFiber } from './ReactFiberWorkLoop'
 
 /**
  * 创建容器，用于将虚拟DOM转换为真实DOM并插入到容器中。
