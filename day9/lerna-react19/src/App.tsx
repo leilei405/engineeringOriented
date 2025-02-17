@@ -1,5 +1,6 @@
 import SyncExternalStoreCom from './study/redux'
 import TransitionUseCom from './study/useTransition'
+import DeferredValueUseCom from './study/useDeferredValue'
 function App() {
   return (
       <div>
@@ -8,7 +9,8 @@ function App() {
           <SyncExternalStoreCom/>
           <h2>TransitionUseCom</h2>
           <TransitionUseCom/>
-          <hr/>
+          <h2>DeferredValueUseCom</h2>
+          <DeferredValueUseCom />
       </div>
   )
 }

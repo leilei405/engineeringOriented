@@ -1,0 +1,18 @@
+.tab {
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
+}
+.tab span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 40px;
+    background-color: aquamarine;
+}
+
+span.active {
+    background-color: cadetblue;
+    color: #fff4c2;
+}
