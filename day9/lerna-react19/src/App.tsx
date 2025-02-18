@@ -1,6 +1,7 @@
 import SyncExternalStoreCom from './study/redux'
 import TransitionUseCom from './study/useTransition'
 import DeferredValueUseCom from './study/useDeferredValue'
+import EffectUseCom from './study/effect/effectUse.tsx'
 function App() {
   return (
       <div>
@@ -11,6 +12,8 @@ function App() {
           <TransitionUseCom/>
           <h2>DeferredValueUseCom</h2>
           <DeferredValueUseCom />
+          <h2>EffectUseCom</h2>
+          <EffectUseCom a={"账单"} />
       </div>
   )
 }
