@@ -1,19 +1,22 @@
 import SyncExternalStoreCom from './study/redux'
-import TransitionUseCom from './study/useTransition'
-import DeferredValueUseCom from './study/useDeferredValue'
-import EffectUseCom from './study/effect/effectUse.tsx'
+// import TransitionUseCom from './study/useTransition'
+// import DeferredValueUseCom from './study/useDeferredValue'
+// import EffectUseCom from './study/effect/effectUse.tsx'
+import CompareEffect from './study/compareEffect'
 function App() {
   return (
       <div>
           <h1>Hello React</h1>
           <h2>SyncExternalStoreCom</h2>
           <SyncExternalStoreCom/>
-          <h2>TransitionUseCom</h2>
-          <TransitionUseCom/>
-          <h2>DeferredValueUseCom</h2>
-          <DeferredValueUseCom />
-          <h2>EffectUseCom</h2>
-          <EffectUseCom a={"账单"} />
+          {/*<h2>TransitionUseCom</h2>*/}
+          {/*<TransitionUseCom/>*/}
+          {/*<h2>DeferredValueUseCom</h2>*/}
+          {/*<DeferredValueUseCom />*/}
+          {/*<h2>EffectUseCom</h2>*/}
+          {/*<EffectUseCom a={"账单"} />*/}
+          <h2>CompareEffect</h2>
+          <CompareEffect />
       </div>
   )
 }
