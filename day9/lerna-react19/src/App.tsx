@@ -4,6 +4,7 @@ import SyncExternalStoreCom from './study/redux'
 // import EffectUseCom from './study/effect/effectUse.tsx'
 import CompareEffect from './study/compareEffect'
 import DemoContext from './study/useContext'
+import DemoUseRef from "./study/useRef";
 function App() {
   return (
       <div>
@@ -20,6 +21,8 @@ function App() {
           <CompareEffect />
           <h2>6. useContext</h2>
           <DemoContext />
+          <h2>7. DemoUseRef</h2>
+          <DemoUseRef />
       </div>
   )
 }
