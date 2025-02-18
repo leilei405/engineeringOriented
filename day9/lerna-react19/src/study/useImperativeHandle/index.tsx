@@ -7,7 +7,7 @@ interface ChildRef {
 }
 
 // 子组件（使用 forwardRef + useImperativeHandle）
-const ChildComponent = forwardRef((props, ref ) => {
+const ChildComponent = forwardRef((_props, ref ) => {
     const [value, setValue] = useState('');
     const inputRef = useRef(null);
 
@@ -15,6 +15,7 @@ const ChildComponent = forwardRef((props, ref ) => {
     useImperativeHandle(ref, () => ({
         // 聚焦输入框
         focusInput: () => {
+            // @ts-ignore
             inputRef.current!.focus();
         },
         // 获取输入值
@@ -24,6 +25,7 @@ const ChildComponent = forwardRef((props, ref ) => {
         // 重置输入
         resetValue: () => {
             setValue('');
+            // @ts-ignore
             inputRef.current!.value = '';
         }
     }));

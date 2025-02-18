@@ -20,7 +20,7 @@ const store = createStore(rootReducer, { number: 1 });
 function Index() {
     /* 订阅外部数据源 */
     const state = useSyncExternalStore(store.subscribe, () => store.getState().number);
-    console.log(state);
+    // console.log(state);
     return (
         <div>
             {state}

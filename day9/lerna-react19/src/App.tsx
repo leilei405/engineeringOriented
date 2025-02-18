@@ -6,6 +6,7 @@ import CompareEffect from './study/compareEffect'
 import DemoContext from './study/useContext'
 import DemoUseRef from "./study/useRef";
 import ParentComponent from "./study/useImperativeHandle";
+import DemoUseCallback from "./study/useCallback";
 function App() {
   return (
       <div>
@@ -26,6 +27,8 @@ function App() {
           <DemoUseRef />
           <h2>8. ParentComponent </h2>
           <ParentComponent />
+          <h2>9. useCallback</h2>
+          <DemoUseCallback id={3}/>
       </div>
   )
 }
