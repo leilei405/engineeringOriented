@@ -5,6 +5,7 @@ import SyncExternalStoreCom from './study/redux'
 import CompareEffect from './study/compareEffect'
 import DemoContext from './study/useContext'
 import DemoUseRef from "./study/useRef";
+import ParentComponent from "./study/useImperativeHandle";
 function App() {
   return (
       <div>
@@ -23,6 +24,8 @@ function App() {
           <DemoContext />
           <h2>7. DemoUseRef</h2>
           <DemoUseRef />
+          <h2>8. ParentComponent </h2>
+          <ParentComponent />
       </div>
   )
 }
