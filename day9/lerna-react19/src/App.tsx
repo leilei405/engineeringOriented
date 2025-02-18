@@ -3,6 +3,7 @@ import SyncExternalStoreCom from './study/redux'
 // import DeferredValueUseCom from './study/useDeferredValue'
 // import EffectUseCom from './study/effect/effectUse.tsx'
 import CompareEffect from './study/compareEffect'
+import DemoContext from './study/useContext'
 function App() {
   return (
       <div>
@@ -17,6 +18,8 @@ function App() {
           {/*<EffectUseCom a={"账单"} />*/}
           <h2>5. CompareEffect</h2>
           <CompareEffect />
+          <h2>6. useContext</h2>
+          <DemoContext />
       </div>
   )
 }
