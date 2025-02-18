@@ -7,15 +7,15 @@ function App() {
   return (
       <div>
           <h1>Hello React</h1>
-          <h2>SyncExternalStoreCom</h2>
+          <h2>1. SyncExternalStoreCom</h2>
           <SyncExternalStoreCom/>
-          {/*<h2>TransitionUseCom</h2>*/}
+          {/*<h2>2. TransitionUseCom</h2>*/}
           {/*<TransitionUseCom/>*/}
-          {/*<h2>DeferredValueUseCom</h2>*/}
+          {/*<h2>3. DeferredValueUseCom</h2>*/}
           {/*<DeferredValueUseCom />*/}
-          {/*<h2>EffectUseCom</h2>*/}
+          {/*<h2>4. EffectUseCom</h2>*/}
           {/*<EffectUseCom a={"账单"} />*/}
-          <h2>CompareEffect</h2>
+          <h2>5. CompareEffect</h2>
           <CompareEffect />
       </div>
   )
