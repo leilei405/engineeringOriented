@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  function ajaxGet (url, callback) {
+    // 创建 XMLHttpRequest
+    var xhr = new XMLHttpRequest()
+    // 初始化 GET 请求
+    xhr.open('GET', url, true)
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          // 请求失败，返回响应信息
+          callback(null, xhr.responseText)
+        } else {
+          // 请求失败，返回错误信息
+          callback(`Error:${xhr.status}`, null)
+        }
+      }
+    }
+    xhr.send();
+  }
+  ajaxGet('https://jsonplaceholder.typicode.com/posts/1', function (err, data) {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log('Success:', JSON.parse(data));
+    }
+  });
+</script>
+</body>
+</html>
