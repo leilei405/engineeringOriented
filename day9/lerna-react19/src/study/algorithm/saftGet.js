@@ -11,7 +11,6 @@ function safeGet (obj, path, defaultValue) {
   const keys = path.split('.');
 
   return keys.reduce((acc, key) => {
-    console.log(key, '====')
     if (acc && acc.hasOwnProperty(key)) {
       return acc[key]; // 返回存在的属性值
     } else {
