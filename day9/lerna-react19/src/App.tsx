@@ -8,6 +8,7 @@ import DemoUseRef from "./study/useRef";
 import ParentComponent from "./study/useImperativeHandle";
 import DemoUseCallback from "./study/useCallback";
 import ParentComponent1 from "./study/useMemo";
+import TextComponent from "./study/algorithm/TextComponent";
 function App() {
   return (
       <div>
@@ -32,6 +33,8 @@ function App() {
           <DemoUseCallback id={3}/>
           <h2>10. ParentComponent</h2>
           <ParentComponent1 />
+          <h2>11. TextComponent</h2>
+          <TextComponent />
       </div>
   )
 }
