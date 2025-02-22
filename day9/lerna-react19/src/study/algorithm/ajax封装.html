@@ -14,7 +14,7 @@
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
-          // 请求失败，返回响应信息
+          // 请求成功，返回响应信息
           callback(null, xhr.responseText)
         } else {
           // 请求失败，返回错误信息
