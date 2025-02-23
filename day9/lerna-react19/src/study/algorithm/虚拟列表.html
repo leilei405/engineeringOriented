@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>虚拟列表</title>
+    <style>
+        #container {
+            position: relative; /* 新增定位上下文 */
+            height: 400px;
+            overflow-y: auto;
+            border: 1px solid #000;
+        }
+        #list {
+            position: absolute; /* 脱离文档流 */
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="container" >
+    <div id="placeholder"></div>
+    <div id="list"></div>
+</div>
+<script src="./VirtualList.js"></script>
+</body>
+</html>
