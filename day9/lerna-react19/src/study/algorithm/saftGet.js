@@ -19,9 +19,9 @@ function safeGet (obj, path, defaultValue) {
   }, obj)
 }
 
-// console.log(safeGet(obj, 'user.profile.name'));      // 输出: 'Sunday'
+console.log(safeGet(obj, 'user.profile.name'));      // 输出: 'Sunday'
 console.log(safeGet(obj, 'user.profile.gender', undefined)); // 输出: 'N/A'
-// console.log(safeGet(obj, 'user.address.city', 'Unknown')); // 输出: 'Unknown'
+console.log(safeGet(obj, 'user.address.city', 'Unknown')); // 输出: 'Unknown'
 
 const array = [15, 16, 17, 18, 19];
 
