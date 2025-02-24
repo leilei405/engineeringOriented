@@ -9,6 +9,7 @@ import ParentComponent from "./study/useImperativeHandle";
 import DemoUseCallback from "./study/useCallback";
 import ParentComponent1 from "./study/useMemo";
 import TextComponent from "./study/algorithm/TextComponent";
+import {HeartBeat} from "./study/algorithm/HeartBeat.tsx";
 function App() {
   return (
       <div>
@@ -35,6 +36,7 @@ function App() {
           <ParentComponent1 />
           <h2>11. TextComponent</h2>
           <TextComponent />
+          <HeartBeat />
       </div>
   )
 }
