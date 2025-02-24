@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .light {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        .red {
+            background-color: red;
+        }
+        .yellow {
+            background-color: yellow;
+        }
+        .green {
+            background-color: green;
+        }
+
+        .red-active {
+           box-shadow: 0 0 20px red;
+        }
+
+        .yellow-active {
+            box-shadow: 0 0 20px yellow;
+        }
+
+        .green-active {
+            box-shadow: 0 0 20px green;
+        }
+    </style>
+</head>
+<body>
+    <div id="traffic-light">
+        <div class="light red"></div>
+        <div class="light yellow"></div>
+        <div class="light green"></div>
+    </div>
+
+    <script>
+        let config = [
+          { type: 'red', interval: 3000 },
+          { type: 'yellow', interval: 1000 },
+          { type: 'green', interval: 2000 }
+        ]
+
+        function delay (time) {
+          return new Promise((resolve) => setTimeout(resolve, time))
+        }
+
+        async function changeLight (light, duration) {
+            light.classList.add(`${light.classList[1]}-active`);
+            await delay(duration);
+            light.classList.remove(`${light.classList[1]}-active`)
+        }
+
+        async function start (cfg) {
+            for (let item of cfg) {
+              const { type, interval } = item
+              const light = document.querySelector(`.${type}`)
+              await changeLight(light, interval)
+            }
+            await start(cfg)
+        }
+        start(config)
+    </script>
+</body>
+</html>
