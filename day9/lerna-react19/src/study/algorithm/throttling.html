@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>节流</title>
+</head>
+<body>
+<div style="width: 100%; height: 100000px">11111</div>
+<script>
+    function throttle(fn, limit) {
+      let lastCall;
+      let timeoutId;
+
+      return function (...args) {
+        const now = Date.now();
+        const ctx = this;
+
+        if (!lastCall || now >= lastCall + limit) {
+          fn.apply(ctx, args);
+          lastCall = now;
+        } else {
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(() => {
+            fn.apply(ctx, args);
+            lastCall = now;
+          }, limit - (now - lastCall));
+        }
+      };
+    }
+
+    const ff = throttle(() => {
+      console.log('1111');
+    }, 1000)
+    window.addEventListener('scroll', ff)
+
+    function throttle(func, delay) {
+      let lastTime = 0; // 上次执行的时间戳
+
+      return function (...args) {
+        const now = Date.now(); // 当前时间戳
+
+        // 如果距离上次执行的时间大于 delay，则执行函数
+        if (now - lastTime >= delay) {
+          func.apply(this, args); // 绑定 this 并传递参数
+          lastTime = now; // 更新上次执行时间
+        }
+      };
+    }
+
+    function throttling (fn, limit) {
+      let lastCall;
+      let lastExecution = 0
+
+      return function (...args) {
+        const now = Date.now();
+        const ctx = this;
+        if (lastCall && now < lastCall + limit) {
+          return;
+        }
+        lastCall = now;
+        fn.apply(ctx, args)
+      }
+    }
+</script>
+</body>
+</html>
