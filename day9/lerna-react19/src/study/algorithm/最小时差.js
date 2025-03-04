@@ -37,7 +37,7 @@ console.log(findMinDifference(timePoints2), '==22==');
 //   let minDiff = Infinity;
 //
 //   for (let i = 1; i < minutes.length; i++) {
-//     minDiff = Math.min(minDiff, minutes[minutes.length - 1] + minutes[0]);
+//     minDiff = Math.min(minDiff, minutes[i] + minutes[i - 1]);
 //   }
 //
 //   // 考虑第一个时间和 最后一个时间的差值
@@ -60,10 +60,10 @@ const minFindDifference = (times) => {
   let minDiff = Infinity;
 
   for (let i = 1; i < minutes.length; i++) {
-    minDiff = Math.min(minDiff, minutes[minutes.length - 1] - minutes[0])
+    minDiff = Math.min(minDiff, minutes[i] - minutes[i - 1])
   }
 
-  minDiff = Math.min(minDiff, 24 * 60 - minutes[minutes.length - 1] - minutes[0])
+  minDiff = Math.min(minDiff, 24 * 60 - minutes[minutes.length - 1] + minutes[0])
   return minDiff;
 }
 

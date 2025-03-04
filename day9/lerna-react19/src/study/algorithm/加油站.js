@@ -20,11 +20,11 @@ const canCompleteCircuit = (gas, cost) => {
   return totalTank >=0 ? startStation : -1;
 };
 
-// const gas = [1,2,3,4,5];
-const gas = [2,3,4];
-// const cost = [3,4,5,1,2];
-const cost = [3,4,3];
-// console.log(canCompleteCircuit(gas, cost))
+// const gas1 = [1,2,3,4,5];
+// const gas1 = [2,3,4];
+// const cost2 = [3,4,5,1,2];
+// const cost2 = [3,4,3];
+// console.log(canCompleteCircuit(gas1, cost1))
 
 
 
