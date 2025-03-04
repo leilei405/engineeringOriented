@@ -2,7 +2,7 @@ import React from 'react'
 
 const HeartBeat = () => {
     React.useEffect(() => {
-        let timer = 0;
+        let timer: any = 0;
         function fn() {
             console.log('心跳')
             timer = setTimeout(fn, 1000)
