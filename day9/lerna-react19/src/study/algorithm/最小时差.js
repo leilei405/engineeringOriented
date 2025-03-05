@@ -46,9 +46,6 @@ console.log(findMinDifference(timePoints2), '==22==');
 // }
 
 
-
-
-
 const minFindDifference = (times) => {
   const minutes = times.map(time => {
     const [hours, mins] = time.split(':').map(Number)
