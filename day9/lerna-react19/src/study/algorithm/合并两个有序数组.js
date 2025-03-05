@@ -26,9 +26,9 @@ function mergeSubArray1 (list1, list2) {
   return result;
 }
 
-const list1 = [1, 3, 5];
-const list2 = [2, 4, 6];
-console.log(mergeSubArray1(list1, list2))
+// const list1 = [1, 3, 5];
+// const list2 = [2, 4, 6];
+// console.log(mergeSubArray1(list1, list2))
 
 
 // 升级版
@@ -64,3 +64,59 @@ console.log(mergeSubArray1(list1, list2))
 // let n = 3;
 //
 // console.log(mergeSubArray2(nums1, m, nums2, n));
+
+
+const merge = (nums1, m, nums2, n) => {
+  let p1 = m - 1;
+  let p2 = n - 1;
+  let p = m + n - 1;
+
+  while (p1 >= 0 && p2 >= 0) {
+    if (nums1[p1] > nums2[p2]) {
+      nums1[p] = nums1[p1]
+      p1--
+    } else {
+      nums1[p] = nums2[p2]
+      p2--
+    }
+    p--;
+  }
+
+  while (p2 >= 0) {
+    nums1 = nums2[p2]
+    p2--;
+    p--;
+  }
+
+  return nums1;
+
+}
+
+const list1 = [1, 2, 3, 0, 0, 0];
+const list2 = [2, 5, 6];
+const m = 3, n = 3
+
+console.log(merge(list1, m, list2, n))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
