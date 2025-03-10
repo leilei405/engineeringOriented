@@ -69,7 +69,7 @@ class LRUCache {
   }
 }
 
-const lru = new LRUCache(2);
-lru.put(1, 1);
-lru.put(2, 2);
-console.log(lru.get(1)); // 1
+const LRU = new LRUCache(2);
+LRU.put(1, 1);
+LRU.put(2, 2);
+console.log(LRU.get(1)); // 1
