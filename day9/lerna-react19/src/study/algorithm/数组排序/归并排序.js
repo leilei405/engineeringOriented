@@ -40,4 +40,30 @@ Array.prototype.mergeArr1 = function () {
 
 let caseArr = [2, 543, 754, 31, 213, 123, 111, 2].mergeArr1();
 
-console.log(caseArr, '===')
+// console.log(caseArr, '===')
+
+// TODO: 2. 归并排序
+function mergeSort (arr) {
+  if (arr.length === 1) return arr
+
+  const mid = Math.floor(arr.length / 2);
+  const left = mergeSort(arr.slice(0, mid));
+  const right = mergeSort(arr.slice(mid, arr.length));
+
+  return merge(left, right);
+}
+
+function merge (left, right) {
+  const result = [];
+  let i = 0;
+  let j = 0;
+
+  while (i < left.length && j < right.length) {
+    left[i] < right[j] ? result.push(left[i++]) : result.push(right[j++]);
+  }
+
+  return result.concat(left.slice(i)).concat(right.slice(j));
+}
+
+let caseArr1 = [2, 543, 754, 31, 213, 123, 111, 2]
+console.log(mergeSort(caseArr1), '====')
