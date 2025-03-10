@@ -30,8 +30,8 @@ Array.prototype.mergeArr1 = function (list2) {
   return result;
 }
 
-let caseArr = [1, 3, 5].mergeArr1([2, 4, 6]);
-console.log(caseArr);
+// let caseArr = [1, 3, 5].mergeArr1([2, 4, 6]);
+// console.log(caseArr);
 
 function mergeArr2 (list1, m, list2, n) {
   // 三指针解决
@@ -39,15 +39,15 @@ function mergeArr2 (list1, m, list2, n) {
   let p2 = n - 1;
   let p = m + n - 1;
 
-  if (p1 >= 0 && p2 >=0) {
+  while (p1 >= 0 && p2 >=0) {
     if (list1[p1] > list2[p2]) {
       list1[p] = list1[p1];
       p1--;
     } else {
-      list1[p] = list1[p2];
-      p2--
+      list1[p] = list2[p2];
+      p2--;
     }
-    p--
+    p--;
   }
 
   while (p2 >= 0) {
@@ -59,4 +59,8 @@ function mergeArr2 (list1, m, list2, n) {
   return list1
 }
 
-console.log(mergeArr2([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3))
+const list1 = [1, 2, 3, 0, 0, 0];
+const list2 = [2, 5, 6];
+const m = 3, n = 3
+
+console.log(mergeArr2(list1, m, list2, n), '===')
