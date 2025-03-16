@@ -1,0 +1,37 @@
+.indicatorSelectorModal {
+  :global(.ant-modal-body) {
+    padding: 16px;
+  }
+}
+
+.filterBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 16px;
+  align-items: flex-end;
+}
+
+.filterItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.filterLabel {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.filterSelect {
+  width: 160px;
+}
+
+.filterInput {
+  width: 200px;
+}
+
+.filterButtons {
+  display: flex;
+  gap: 8px;
+}
+

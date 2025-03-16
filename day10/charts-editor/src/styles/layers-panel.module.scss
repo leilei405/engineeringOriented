@@ -1,0 +1,75 @@
+.layersPanel {
+  padding: 8px;
+  color: black;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  cursor: pointer;
+  background-color: #e6e6e6;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  
+  span {
+    margin-left: 8px;
+  }
+}
+
+.layersList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.layerItem {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  
+  &:hover {
+    background-color: #f0f0f0;
+  }
+  
+  &.selected {
+    background-color: #e6f4ff;
+  }
+}
+
+.dragHandle {
+  margin-right: 8px;
+  cursor: -webkit-grab;
+  cursor: grab;
+  color: #999;
+  
+  &:hover {
+    color: #666;
+  }
+}
+
+.layerIcon {
+  margin-right: 8px;
+  color: #faad14;
+  font-size: 12px;
+}
+
+.layerTitle {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+.visibilityToggle {
+  color: #999;
+  cursor: pointer;
+  
+  &:hover {
+    color: #1677ff;
+  }
+}
+

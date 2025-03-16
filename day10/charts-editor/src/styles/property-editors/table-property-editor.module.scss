@@ -1,0 +1,77 @@
+.tablePropertyEditor {
+  margin-top: 16px;
+}
+
+.tabs {
+  margin-bottom: 16px;
+}
+
+.tabContent {
+  margin-top: 16px;
+}
+
+.formItem {
+  margin-bottom: 16px;
+}
+
+.label {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.select {
+  width: 100%;
+}
+
+.exampleData {
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  padding: 12px;
+}
+
+.exampleLabel {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.exampleCode {
+  background-color: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  padding: 8px;
+  max-height: 128px;
+  overflow: auto;
+  
+  pre {
+    margin: 0;
+    font-size: 12px;
+  }
+}
+
+.editButton {
+  margin-top: 8px;
+  width: 100%;
+}
+
+.colorPickers {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.colorPicker {
+  flex: 1;
+}
+
+.colorInput {
+  height: 36px;
+  padding: 4px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+

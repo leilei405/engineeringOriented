@@ -1,0 +1,162 @@
+.draggableComponent {
+  &.selected {
+    z-index: 100 !important;
+  }
+}
+
+.componentWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  outline: 1px solid transparent;
+  
+  &:focus {
+    outline: none;
+  }
+  
+  .selected & {
+    outline: 2px solid #1677ff;
+  }
+  
+  &:hover:not(.selected &) {
+    outline: 1px solid #e8e8e8;
+  }
+}
+
+.componentHeader {
+  position: absolute;
+  top: -28px;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+}
+
+.componentTitle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background-color: #1677ff;
+  color: #fff;
+  padding: 2px 8px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  
+  span {
+    max-width: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.deleteIcon {
+  cursor: pointer;
+  margin-left: 8px;
+  
+  &:hover {
+    color: #ff4d4f;
+  }
+}
+
+.zapIcon {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 16px;
+  height: 16px;
+  background-color: #faad14;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #873800;
+  font-size: 10px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(250, 173, 20, 0.7);
+  }
+  
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 5px rgba(250, 173, 20, 0);
+  }
+  
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(250, 173, 20, 0);
+  }
+}
+
+.resizeHandleBottomRight,
+.resizeHandleBottomLeft,
+.resizeHandleTopRight,
+.resizeHandleTopLeft,
+.resizeHandleTop,
+.resizeHandleRight,
+.resizeHandleBottom,
+.resizeHandleLeft {
+  width: 8px;
+  height: 8px;
+  background-color: #1677ff;
+  border-radius: 50%;
+  z-index: 100;
+}
+
+.resizeHandleBottomRight {
+  bottom: -4px;
+  right: -4px;
+  cursor: se-resize;
+}
+
+.resizeHandleBottomLeft {
+  bottom: -4px;
+  left: -4px;
+  cursor: sw-resize;
+}
+
+.resizeHandleTopRight {
+  top: -4px;
+  right: -4px;
+  cursor: ne-resize;
+}
+
+.resizeHandleTopLeft {
+  top: -4px;
+  left: -4px;
+  cursor: nw-resize;
+}
+
+.resizeHandleTop {
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: n-resize;
+}
+
+.resizeHandleRight {
+  right: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: e-resize;
+}
+
+.resizeHandleBottom {
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: s-resize;
+}
+
+.resizeHandleLeft {
+  left: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: w-resize;
+}
+
