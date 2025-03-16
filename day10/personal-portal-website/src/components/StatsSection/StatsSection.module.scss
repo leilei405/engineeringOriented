@@ -1,0 +1,81 @@
+@use '../../styles/variables.scss';
+
+.statsSection {
+  padding: 5rem 0;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.sectionTag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background-color: rgba(variables.$primary-color, 0.1);
+  color: variables.$primary-color;
+  border-radius: variables.$border-radius-lg;
+  font-size: variables.$font-size-sm;
+  margin-bottom: 0.5rem;
+}
+
+.sectionTitle {
+  font-size: variables.$font-size-3xl;
+  font-weight: 700;
+  margin-bottom: 1rem;
+
+  @media (min-width: variables.$breakpoint-md) {
+    font-size: variables.$font-size-4xl;
+  }
+}
+
+.sectionDescription {
+  max-width: 36rem;
+  margin: 0 auto;
+  color: var(--muted-foreground-color);
+  font-size: variables.$font-size-lg;
+}
+
+.statsGrid {
+  margin-top: 2rem;
+}
+
+.statCard {
+  height: 100%;
+  text-align: center;
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: variables.$border-radius-lg;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(variables.$primary-color, 0.3);
+  }
+}
+
+.statIconWrapper {
+  margin-bottom: 1rem;
+}
+
+.statIcon {
+  font-size: 2rem;
+  color: variables.$primary-color;
+}
+
+.statValue {
+  :global {
+    .ant-statistic-content-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: variables.$primary-color;
+    }
+  }
+}
+
+.statDescription {
+  color: var(--muted-foreground-color);
+  font-size: variables.$font-size-sm;
+  margin-top: 0.5rem;
+}
+

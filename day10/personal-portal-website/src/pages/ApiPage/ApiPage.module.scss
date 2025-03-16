@@ -1,0 +1,80 @@
+@use '../../styles/variables.scss';
+
+.apiPage {
+  padding: 2rem 0 5rem;
+}
+
+.breadcrumb {
+  margin-bottom: 2rem;
+}
+
+.pageHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.pageTitle {
+  font-size: variables.$font-size-4xl;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.pageDescription {
+  max-width: 36rem;
+  margin: 0 auto;
+  color: var(--muted-foreground-color);
+}
+
+.apiCard {
+  border-radius: variables.$border-radius-lg;
+  overflow: hidden;
+}
+
+.apiToolbar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.apiSearch {
+  display: flex;
+  gap: 1rem;
+  flex: 1;
+  max-width: 500px;
+}
+
+.apiActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.apiTabs {
+  :global(.ant-tabs-nav) {
+    margin-bottom: 1rem;
+}
+}
+
+.apiTable {
+  :global(.ant-table-thead > tr > th) {
+    background-color: var(--muted-color);
+}
+}
+
+.apiName {
+  font-weight: 500;
+  color: variables.$primary-color;
+
+  &:hover {
+    text-decoration: underline;
+}
+}
+
+.apiPath {
+  background-color: var(--muted-color);
+  padding: 0.25rem 0.5rem;
+  border-radius: variables.$border-radius-sm;
+  font-family: 'Fira Code', monospace;
+  font-size: variables.$font-size-sm;
+}

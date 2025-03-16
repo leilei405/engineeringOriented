@@ -1,0 +1,109 @@
+@use '../../styles/variables.scss';
+
+.header {
+  height: 64px;
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.8);
+  
+  body.dark & {
+    background: rgba(15, 15, 23, 0.8);
+  }
+}
+
+.headerContainer {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logoLink {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logoText {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(to right, variables.$primary-color, variables.$primary-light);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.desktopNav {
+  display: none;
+  gap: 1.5rem;
+  
+  @media (min-width: 768px) {
+    display: flex;
+  }
+}
+
+.navLink {
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 0.2s;
+  
+  &:hover {
+    color: variables.$primary-color;
+  }
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.iconButton {
+  height: 36px;
+  width: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  
+  &:hover {
+    background-color: rgba(variables.$primary-color, 0.1);
+  }
+}
+
+.menuButton {
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.mobileNav {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-top: 1px solid var(--border-color);
+  background: var(--background-color);
+  
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.mobileNavLink {
+  padding: 0.75rem 0;
+  font-weight: 500;
+  transition: color 0.2s;
+  
+  &:hover {
+    color: variables.$primary-color;
+  }
+}
+

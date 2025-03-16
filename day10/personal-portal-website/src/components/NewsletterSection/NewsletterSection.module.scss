@@ -1,0 +1,109 @@
+@use '../../styles/variables.scss';
+
+.newsletterSection {
+  padding: 5rem 0;
+  background-color: var(--muted-color);
+}
+
+.newsletterCard {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: var(--card-color);
+  border-radius: variables.$border-radius-lg;
+  padding: 3rem 2rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.sectionHeader {
+  margin-bottom: 2rem;
+}
+
+.sectionTag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background-color: rgba(variables.$primary-color, 0.1);
+  color: variables.$primary-color;
+  border-radius: variables.$border-radius-lg;
+  font-size: variables.$font-size-sm;
+  margin-bottom: 0.5rem;
+}
+
+.sectionTitle {
+  font-size: variables.$font-size-3xl;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.sectionDescription {
+  color: var(--muted-foreground-color);
+  font-size: variables.$font-size-lg;
+  margin: 0 auto;
+}
+
+.newsletterForm {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  @media (max-width: variables.$breakpoint-sm) {
+    flex-direction: column;
+  }
+}
+
+.emailInput {
+  height: 48px;
+  border-radius: variables.$border-radius-lg;
+}
+
+.inputIcon {
+  color: variables.$primary-color;
+}
+
+.submitButton {
+  height: 48px;
+  background-color: variables.$primary-color;
+  border-color: variables.$primary-color;
+  border-radius: variables.$border-radius-lg;
+
+  &:hover, &:focus {
+    background-color: variables.$primary-dark;
+    border-color: variables.$primary-dark;
+  }
+
+  @media (max-width: variables.$breakpoint-sm) {
+    width: 100%;
+  }
+}
+
+.privacyNote {
+  font-size: variables.$font-size-xs;
+  color: var(--muted-foreground-color);
+  margin-top: 1rem;
+}
+
+.successMessage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.successIcon {
+  font-size: 3rem;
+  color: variables.$primary-color;
+}
+
+.successTitle {
+  font-size: variables.$font-size-xl;
+  font-weight: 600;
+  margin: 0;
+}
+
+.successDescription {
+  color: var(--muted-foreground-color);
+  font-size: variables.$font-size-base;
+  margin: 0;
+}
+

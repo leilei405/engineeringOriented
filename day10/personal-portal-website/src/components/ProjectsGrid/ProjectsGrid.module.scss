@@ -1,0 +1,91 @@
+@use '../../styles/variables.scss';
+
+.projectsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+
+  @media (min-width: variables.$breakpoint-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: variables.$breakpoint-lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (min-width: variables.$breakpoint-xl) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.projectCard {
+  height: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(variables.$primary-color, 0.3);
+  }
+}
+
+.projectCover {
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(variables.$primary-color, 0.1) 0%, rgba(variables.$primary-color, 0.2) 100%);
+}
+
+.projectIconLarge {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(variables.$primary-color, 0.2);
+  border-radius: 50%;
+
+  svg {
+    font-size: 40px;
+    color: variables.$primary-color;
+  }
+}
+
+.projectTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.projectTag {
+  background-color: var(--muted-color);
+  border: none;
+}
+
+.projectRating {
+  margin-bottom: 1rem;
+
+  :global(.ant-rate-star) {
+    color: variables.$primary-color;
+  }
+}
+
+.projectStat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  color: var(--muted-foreground-color);
+  font-size: variables.$font-size-sm;
+}
+
+.viewButton {
+  background-color: variables.$primary-color;
+  border-color: variables.$primary-color;
+
+  &:hover, &:focus {
+    background-color: variables.$primary-dark;
+    border-color: variables.$primary-dark;
+  }
+}

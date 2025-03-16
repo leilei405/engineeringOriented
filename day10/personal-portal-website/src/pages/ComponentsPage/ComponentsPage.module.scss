@@ -1,0 +1,88 @@
+@use '../../styles/variables.scss';
+
+.componentsPage {
+  padding: 2rem 0 5rem;
+}
+
+.breadcrumb {
+  margin-bottom: 2rem;
+}
+
+.pageHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.pageTitle {
+  font-size: variables.$font-size-4xl;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.pageDescription {
+  max-width: 36rem;
+  margin: 0 auto 2rem;
+  color: var(--muted-foreground-color);
+}
+
+.searchBar {
+  max-width: 30rem;
+  margin: 0 auto;
+}
+
+.searchInput {
+  border-radius: variables.$border-radius-lg;
+}
+
+.componentTabs {
+  :global(.ant-tabs-nav) {
+    margin-bottom: 2rem;
+  }
+}
+
+.componentsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+
+  @media (min-width: variables.$breakpoint-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: variables.$breakpoint-lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.componentCard {
+  height: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(variables.$primary-color, 0.3);
+  }
+}
+
+.componentTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.componentFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.componentDownloads {
+  color: var(--muted-foreground-color);
+  font-size: variables.$font-size-sm;
+}
+
+.componentActions {
+  display: flex;
+  gap: 0.5rem;
+}

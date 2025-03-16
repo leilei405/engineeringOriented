@@ -1,0 +1,275 @@
+@use '../../styles/variables.scss';
+
+.lowCodePage {
+  padding: 2rem 0 5rem;
+}
+
+.breadcrumb {
+  margin-bottom: 2rem;
+}
+
+.pageHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.pageTitle {
+  font-size: variables.$font-size-4xl;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.pageDescription {
+  max-width: 36rem;
+  margin: 0 auto 2rem;
+  color: var(--muted-foreground-color);
+}
+
+.headerButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.platformDemo {
+  margin-bottom: 4rem;
+}
+
+.demoHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.demoTitle {
+  font-size: variables.$font-size-2xl;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.demoDescription {
+  color: var(--muted-foreground-color);
+}
+
+.demoSteps {
+  margin-bottom: 3rem;
+
+  :global(.ant-steps-item-icon) {
+    background-color: variables.$primary-color;
+    border-color: variables.$primary-color;
+  }
+
+  :global(.ant-steps-item-active .ant-steps-item-icon) {
+    background-color: variables.$primary-color;
+    border-color: variables.$primary-color;
+  }
+
+  :global(.ant-steps-item-finish .ant-steps-item-icon) {
+    background-color: white;
+    border-color: variables.$primary-color;
+
+    span {
+      color: variables.$primary-color;
+    }
+  }
+}
+
+.demoPreview {
+  border-radius: variables.$border-radius-lg;
+  overflow: hidden;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.demoEditor {
+  display: flex;
+  height: 500px;
+  background-color: var(--card-color);
+}
+
+.editorSidebar {
+  width: 200px;
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebarTitle {
+  padding: 1rem;
+  font-weight: 500;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.componentList {
+  padding: 1rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.componentItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: variables.$border-radius-md;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--muted-color);
+  }
+}
+
+.componentIcon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(variables.$primary-color, 0.1);
+  border-radius: variables.$border-radius-md;
+  color: variables.$primary-color;
+}
+
+.componentName {
+  font-size: variables.$font-size-sm;
+}
+
+.editorCanvas {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border-color);
+}
+
+.canvasHeader {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.canvasTitle {
+  font-weight: 500;
+}
+
+.canvasControls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.canvasContent {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.canvasPlaceholder {
+  width: 100%;
+  height: 300px;
+  border: 2px dashed var(--border-color);
+  border-radius: variables.$border-radius-lg;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted-foreground-color);
+}
+
+.placeholderIcon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.editorProperties {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+.propertiesTitle {
+  padding: 1rem;
+  font-weight: 500;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.propertiesContent {
+  padding: 1rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.propertyGroup {
+  margin-bottom: 1.5rem;
+}
+
+.propertyTitle {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  font-size: variables.$font-size-sm;
+}
+
+.propertyItem {
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+
+.propertyLabel {
+  width: 80px;
+  font-size: variables.$font-size-sm;
+  color: var(--muted-foreground-color);
+}
+
+.propertyValue {
+  flex: 1;
+}
+
+.propertyInput {
+  height: 24px;
+  background-color: var(--muted-color);
+  border-radius: variables.$border-radius-sm;
+}
+
+.features {
+  padding: 2rem 0;
+}
+
+.featuresTitle {
+  text-align: center;
+  font-size: variables.$font-size-2xl;
+  font-weight: 600;
+  margin-bottom: 3rem;
+}
+
+.featuresGrid {
+  margin-bottom: 2rem;
+}
+
+.featureCard {
+  height: 100%;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(variables.$primary-color, 0.3);
+  }
+}
+
+.featureIcon {
+  font-size: 2.5rem;
+  color: variables.$primary-color;
+  margin-bottom: 1rem;
+}
+
+.featureTitle {
+  font-size: variables.$font-size-lg;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.featureDescription {
+  color: var(--muted-foreground-color);
+  font-size: variables.$font-size-sm;
+}

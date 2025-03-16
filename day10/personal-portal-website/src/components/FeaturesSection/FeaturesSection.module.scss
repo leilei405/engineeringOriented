@@ -1,0 +1,77 @@
+@use '../../styles/variables.scss';
+
+.featuresSection {
+  padding: 5rem 0;
+  background-color: var(--muted-color);
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.sectionTag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background-color: rgba(variables.$primary-color, 0.1);
+  color: variables.$primary-color;
+  border-radius: variables.$border-radius-lg;
+  font-size: variables.$font-size-sm;
+  margin-bottom: 0.5rem;
+}
+
+.sectionTitle {
+  font-size: variables.$font-size-3xl;
+  font-weight: 700;
+  margin-bottom: 1rem;
+
+  @media (min-width: variables.$breakpoint-md) {
+    font-size: variables.$font-size-4xl;
+  }
+}
+
+.sectionDescription {
+  max-width: 36rem;
+  margin: 0 auto;
+  color: var(--muted-foreground-color);
+  font-size: variables.$font-size-lg;
+}
+
+.featuresGrid {
+  margin-top: 2rem;
+}
+
+.featureCard {
+  height: 100%;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: variables.$border-radius-lg;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(variables.$primary-color, 0.3);
+  }
+}
+
+.featureIconWrapper {
+  margin-bottom: 1rem;
+}
+
+.featureIcon {
+  font-size: 2.5rem;
+  color: variables.$primary-color;
+}
+
+.featureTitle {
+  font-size: variables.$font-size-lg;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.featureDescription {
+  color: var(--muted-foreground-color);
+  font-size: variables.$font-size-sm;
+  margin: 0;
+}
+
