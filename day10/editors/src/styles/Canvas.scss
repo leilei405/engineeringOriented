@@ -1,0 +1,31 @@
+.canvas {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #fff;
+  border: 1px solid #e8e8e8;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: auto;
+  
+  // 添加网格背景，帮助用户对齐元素
+  .canvas-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    background-size: 20px 20px;
+    background-image: 
+      linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    z-index: 0;
+  }
+}
+
+.canvas-container {
+  background-color: #f0f2f5;
+  padding: 20px;
+  overflow: auto;
+}
+
