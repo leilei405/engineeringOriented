@@ -10,6 +10,7 @@ import DemoUseCallback from "./study/useCallback";
 import ParentComponent1 from "./study/useMemo";
 import TextComponent from "./study/algorithm/TextComponent";
 import {HeartBeat} from "./study/algorithm/HeartBeat.tsx";
+import TreeView from "./study/TreeView";
 function App() {
   return (
       <div>
@@ -37,6 +38,7 @@ function App() {
           <h2>11. TextComponent</h2>
           <TextComponent />
           <HeartBeat />
+          <TreeView />
       </div>
   )
 }
