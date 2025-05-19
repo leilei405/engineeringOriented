@@ -26,4 +26,5 @@ const obj = {
 
 console.log(lodash_get(obj, 'a.b.c', 'dede'), '==111==')
 console.log(lodash_get(obj, 'b.c[0].c[1]', 'dede'), '==222==')
-let reg = /\[([^\]]+)]/g
+let reg = /\[([^\]]+)]/g;
+let rep = /\[([^\]]+)]/g;
