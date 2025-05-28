@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const Countdown = ({ initialTime = 60 }) => {
+const CountDown = ({ initialTime = 60 }) => {
     // 定义倒计时的剩余时间状态
     const [timeLeft, setTimeLeft] = useState(initialTime);
     // 定义是否开始倒计时的状态
@@ -18,7 +18,7 @@ const Countdown = ({ initialTime = 60 }) => {
     };
 
     useEffect(() => {
-        let timer;
+        let timer: any = 0;
         const tick = () => {
             if (timeLeft > 0 && isCounting) {
                 setTimeLeft(prevTime => prevTime - 1);
@@ -47,4 +47,4 @@ const Countdown = ({ initialTime = 60 }) => {
     );
 };
 
-export default Countdown;
+export default CountDown;

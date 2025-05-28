@@ -11,7 +11,8 @@ import ParentComponent1 from "./study/useMemo";
 import TextComponent from "./study/algorithm/TextComponent";
 import {HeartBeat} from "./study/algorithm/HeartBeat.tsx";
 import TreeView from "./study/TreeView";
-import Countdown from "./study/Countdown"
+import CountDown from "./study/countDown.tsx";
+import Countdown1 from './commponents/cutdown';
 function App() {
   return (
       <div>
@@ -40,7 +41,8 @@ function App() {
           <TextComponent />
           <HeartBeat />
           <TreeView />
-          <Countdown />
+          <CountDown />
+          <Countdown1 targetTime={1748525900000} />
       </div>
   )
 }
