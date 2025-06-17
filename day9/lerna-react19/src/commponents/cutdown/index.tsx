@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, JSX } from 'react';
 
 /**
  * 倒计时组件
@@ -6,7 +6,10 @@ import React, { useEffect } from 'react';
  * @param {number} props.targetTime - 目标时间的时间戳（毫秒）
  * @returns {JSX.Element} - 渲染的倒计时组件
  */
-const Countdown = ({ targetTime }: { targetTime: any }) => {
+interface PropsTypes {
+    targetTime: number;
+}
+const Countdown = ({ targetTime }: PropsTypes): JSX.Element => {
   const [timeLeft, setTimeLeft] = React.useState(targetTime - Date.now());
 
     useEffect(() => {

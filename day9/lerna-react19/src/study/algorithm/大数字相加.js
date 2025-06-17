@@ -48,5 +48,3 @@ function bigNumAdd1 (n1, n2) {
 
   return result;
 }
-
-// console.log(bigNumAdd1(1, 2))
