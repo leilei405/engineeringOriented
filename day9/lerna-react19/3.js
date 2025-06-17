@@ -21,22 +21,22 @@ console.log(compareVersions('0.1.1', '0.1.1'),'===')
 // https://eleduck.com/search?keyword=%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91&sort=new
 function queryParams (url) {
   if (!url) {
-    console.log('请输入有效的url！！！');
-    return
+    throw new Error('请输入有效的url！！！');
   }
   const afterParams = url.split('?');
   if (!afterParams[1]) {
-    console.log('未查询到参数！！！')
-    return
+    throw new Error('未查询到参数！！！')
   }
   const beforeParams = afterParams[1].split('&');
   let result = {}
   beforeParams.forEach(item => {
     const [key, value] = item.split('=');
-    result[key] = decodeURIComponent(value)
+    if (key) {
+      result[key] = decodeURIComponent(value)
+    }
   })
 
   return result;
 }
 
-console.log(queryParams('https://eleduck.com/search?keyword=%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91&sort=new'), '=====')
+console.log(queryParams('https://eleduck.com/search?keyword=%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91&sort='), '=====')
